@@ -33,7 +33,7 @@ public class SplashActivity extends BaseActivity {
         if (PrefsUtils.getBoolean(this, Constant.KEY_IS_LOGON)) {
             startActivity(new Intent(this, MainActivity.class));
         } else {
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(this, IntroActivity.class));
         }
         finish();
     }

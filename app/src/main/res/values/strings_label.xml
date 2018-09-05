@@ -10,4 +10,7 @@
     <string name="label_input_psw">输入密码</string>
     <string name="label_confirm_psw">确认密码</string>
     <string name="label_register_and_login">注册并登录</string>
+    <string name="label_have_account">已经有账号?</string>
+    <string name="label_register_now">现在注册</string>
+    <string name="label_browser">随便逛逛</string>
 </resources>
