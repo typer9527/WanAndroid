@@ -1,5 +1,6 @@
 package com.yl.wanandroid.activity;
 
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.support.v7.widget.Toolbar;
@@ -77,7 +78,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_register:
-                ToastUtils.showShort(LoginActivity.this, "开发中");
+                startActivity(new Intent(this, RegisterActivity.class));
                 break;
             case R.id.btn_login:
                 showProgressDialog(getString(R.string.label_logining));

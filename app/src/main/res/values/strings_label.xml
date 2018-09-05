@@ -5,4 +5,5 @@
     <string name="label_go_register">没有账号?去注册</string>
     <string name="label_loading">加载中…</string>
     <string name="label_logining">正在登录</string>
+    <string name="label_register">注册</string>
 </resources>

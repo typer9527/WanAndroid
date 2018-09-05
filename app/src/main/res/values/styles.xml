@@ -12,6 +12,15 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="ToolbarTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+    </style>
+
+    <style name="ToolbarTheme.Primary" parent="ToolbarTheme">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
     <style name="ButtonMain" parent="Base.Widget.AppCompat.Button.Borderless">
         <item name="android:textSize">@dimen/text_size_large</item>
         <item name="android:textColor">@color/colorWhite</item>
