@@ -6,4 +6,8 @@
     <string name="label_loading">加载中…</string>
     <string name="label_logining">正在登录</string>
     <string name="label_register">注册</string>
+    <string name="label_input_user_name">输入用户名</string>
+    <string name="label_input_psw">输入密码</string>
+    <string name="label_confirm_psw">确认密码</string>
+    <string name="label_register_and_login">注册并登录</string>
 </resources>

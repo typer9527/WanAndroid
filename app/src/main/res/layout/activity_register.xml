@@ -12,4 +12,68 @@
         app:navigationIcon="@drawable/ic_arrow_back"
         app:title="@string/label_register"
         app:titleTextColor="@color/colorWhite" />
+
+    <LinearLayout
+        android:id="@+id/ll_input_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/bg_et_register"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/transparent"
+            android:hint="@string/label_input_user_name"
+            android:inputType="text" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999" />
+
+        <EditText
+            android:id="@+id/et_psw"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/transparent"
+            android:hint="@string/label_input_psw"
+            android:inputType="textPassword" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999" />
+
+        <EditText
+            android:id="@+id/et_confirm_psw"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/transparent"
+            android:hint="@string/label_confirm_psw"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/ButtonMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/label_register_and_login"
+        app:layout_constraintTop_toBottomOf="@id/ll_input_area" />
 </android.support.constraint.ConstraintLayout>
