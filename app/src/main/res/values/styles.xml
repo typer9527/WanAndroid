@@ -28,4 +28,10 @@
         <item name="android:background">@drawable/selector_btn_main</item>
         <item name="android:padding">15dp</item>
     </style>
+
+    <style name="DivideLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">#999</item>
+    </style>
 </resources>

@@ -13,4 +13,6 @@
     <string name="label_have_account">已经有账号?</string>
     <string name="label_register_now">现在注册</string>
     <string name="label_browser">随便逛逛</string>
+    <string name="label_home">首页</string>
+    <string name="label_mine">我的</string>
 </resources>
