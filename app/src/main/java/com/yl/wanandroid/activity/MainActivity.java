@@ -9,7 +9,9 @@ import android.view.MenuItem;
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.adapter.ViewPagerAdapter;
 import com.yl.wanandroid.base.BaseActivity;
+import com.yl.wanandroid.fragment.HomeFragment;
 import com.yl.wanandroid.utils.ViewUtils;
+import com.yl.wanandroid.widget.NoScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @BindView(R.id.bnv_main)
     BottomNavigationView bnvMain;
     @BindView(R.id.vp_main)
-    ViewPager vpMain;
+    NoScrollViewPager vpMain;
 
     @Override
     public int getLayoutId() {
@@ -41,7 +43,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     @Override
     public void initData() {
         List<Fragment> mFragments = new ArrayList<>();
-        mFragments.add(new Fragment());
+        mFragments.add(new HomeFragment());
         mFragments.add(new Fragment());
         mFragments.add(new Fragment());
         mFragments.add(new Fragment());

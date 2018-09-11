@@ -17,7 +17,7 @@
         style="@style/DivideLine"
         app:layout_constraintTop_toTopOf="@id/bnv_main" />
 
-    <android.support.v4.view.ViewPager
+    <com.yl.wanandroid.widget.NoScrollViewPager
         android:id="@+id/vp_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
