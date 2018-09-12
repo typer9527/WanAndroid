@@ -70,7 +70,7 @@ public class Articles {
         this.total = total;
     }
 
-    private class Article {
+    public class Article {
         private String apkLink;
         private String author;
         private int chapterId;

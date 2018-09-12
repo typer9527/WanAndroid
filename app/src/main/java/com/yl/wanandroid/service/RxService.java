@@ -3,50 +3,52 @@ package com.yl.wanandroid.service;
 import android.util.Log;
 
 import io.reactivex.Observable;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class RxService {
     private static final String TAG = "RxService";
-    private CompositeDisposable mCd;
+    private Disposable disposable;
 
-    public RxService() {
-        if (mCd == null || mCd.isDisposed()) {
-            mCd = new CompositeDisposable();
-        }
-    }
-
-    public <T> void add(Observable<HttpResponse<T>> observable, final ResponseListener<T> listener) {
-        mCd.add(observable
-                .subscribeOn(Schedulers.newThread())
+    public <T> void add(final Observable<HttpResponse<T>> observable, final ResponseListener<T> listener, final ErrorListener errorListener) {
+        observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<HttpResponse<T>>() {
+                .subscribe(new Observer<HttpResponse<T>>() {
+
                     @Override
-                    public void accept(HttpResponse<T> response) {
+                    public void onSubscribe(Disposable d) {
+                        disposable = d;
+                    }
+
+                    @Override
+                    public void onNext(HttpResponse<T> response) {
                         if (response.getErrorCode() == 0) {
                             listener.onSuccess(response.getData());
                         } else if (response.getErrorCode() == -1001) {
-                            listener.onTokenInvalid(response.getErrorMsg());
+                            errorListener.onTokenInvalid(response.getErrorMsg());
                         } else {
                             Log.e(TAG, "accept: " + response.getErrorMsg());
-                            listener.onError(response.getErrorMsg());
+                            errorListener.onError(response.getErrorMsg());
                         }
                     }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) {
-                        Log.e(TAG, "accept: " + throwable.getMessage());
-                    }
-                }));
-    }
 
-    // onDestroy/onDetach
-    public void dispose() {
-        if (mCd != null) {
-            if (!mCd.isDisposed()) mCd.dispose();
-            mCd = null;
-        }
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(TAG, "onError: " + e.getMessage());
+                        errorListener.onNetError();
+                        if (disposable != null && !disposable.isDisposed()) {
+                            disposable.dispose();
+                        }
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        if (disposable != null && !disposable.isDisposed()) {
+                            disposable.dispose();
+                        }
+                    }
+                });
     }
 }

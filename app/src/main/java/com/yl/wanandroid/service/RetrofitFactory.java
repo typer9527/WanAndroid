@@ -1,6 +1,7 @@
 package com.yl.wanandroid.service;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.yl.wanandroid.utils.Constant;
 
@@ -11,6 +12,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -21,30 +23,39 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 
 public class RetrofitFactory {
+    private static final String TAG = "RetrofitFactory";
     private static final int TIME_OUT = 5;
     private static APIService apiService;
     private static RetrofitFactory retrofitFactory;
 
     private RetrofitFactory() {
-        /*
-         * 构造函数私有化
-         * 并在构造函数中进行retrofit的初始化
-         */
-        OkHttpClient client = new OkHttpClient();
-        client.newBuilder().addInterceptor(new Interceptor() {
+        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
-            public Response intercept(@NonNull Chain chain) throws IOException {
-                Request request = chain.request();
-                return chain.proceed(request);
+            public void log(@NonNull String message) {
+                Log.e(TAG, "log: " + message);
             }
-        }).connectTimeout(TIME_OUT, TimeUnit.SECONDS);
+        });
+        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         /*
          * 由于retrofit底层的实现是通过okhttp实现的，所以可以通过okHttp来设置一些连接参数
          * 如超时等
          */
+        OkHttpClient.Builder client = new OkHttpClient().newBuilder();
+        client.addInterceptor(logInterceptor)
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(@NonNull Chain chain) throws IOException {
+                        Request request = chain.request();
+                        return chain.proceed(request);
+                    }
+                }).connectTimeout(TIME_OUT, TimeUnit.SECONDS);
+        /*
+         * 构造函数私有化
+         * 并在构造函数中进行retrofit的初始化
+         */
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constant.BASE_URL)
-                .client(client)
+                .client(client.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
