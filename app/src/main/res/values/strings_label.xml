@@ -15,4 +15,6 @@
     <string name="label_browser">随便逛逛</string>
     <string name="label_home">首页</string>
     <string name="label_mine">我的</string>
+    <string name="label_article">博文</string>
+    <string name="label_project">项目</string>
 </resources>
