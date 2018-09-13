@@ -1,4 +1,4 @@
-package com.yl.wanandroid.activity;
+package com.yl.wanandroid.view.user;
 
 import android.support.v7.widget.Toolbar;
 import android.view.View;

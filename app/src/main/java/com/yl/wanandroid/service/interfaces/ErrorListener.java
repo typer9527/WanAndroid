@@ -1,4 +1,4 @@
-package com.yl.wanandroid.service;
+package com.yl.wanandroid.service.interfaces;
 
 public interface ErrorListener {
     void onNetError();

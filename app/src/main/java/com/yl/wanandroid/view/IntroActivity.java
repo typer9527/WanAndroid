@@ -1,4 +1,4 @@
-package com.yl.wanandroid.activity;
+package com.yl.wanandroid.view;
 
 import android.content.Intent;
 import android.graphics.Paint;
@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.base.BaseActivity;
+import com.yl.wanandroid.view.MainActivity;
+import com.yl.wanandroid.view.user.LoginActivity;
+import com.yl.wanandroid.view.user.RegisterActivity;
 
 import butterknife.BindView;
 

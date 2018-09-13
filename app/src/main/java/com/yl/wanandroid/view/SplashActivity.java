@@ -1,4 +1,4 @@
-package com.yl.wanandroid.activity;
+package com.yl.wanandroid.view;
 
 import android.content.Intent;
 import android.os.Handler;

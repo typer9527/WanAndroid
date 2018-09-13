@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/bg_intro"
-    tools:context=".activity.IntroActivity">
+    tools:context=".view.IntroActivity">
 
     <TextView
         android:id="@+id/tv_login"

@@ -3,6 +3,7 @@ package com.yl.wanandroid.service;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.yl.wanandroid.service.interfaces.APIService;
 import com.yl.wanandroid.utils.Constant;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class RetrofitFactory {
         HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(@NonNull String message) {
-                Log.e(TAG, "log: " + message);
+                //Log.e(TAG, "log: " + message);
             }
         });
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

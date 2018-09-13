@@ -1,6 +1,6 @@
 package com.yl.wanandroid.base;
 
-import com.yl.wanandroid.service.ErrorListener;
+import com.yl.wanandroid.service.interfaces.ErrorListener;
 
 public abstract class BasePresenter<V extends BaseView> implements ErrorListener {
 

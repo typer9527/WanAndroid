@@ -2,9 +2,9 @@ package com.yl.wanandroid.presenter;
 
 import com.yl.wanandroid.base.BasePresenter;
 import com.yl.wanandroid.model.HomeModel;
-import com.yl.wanandroid.service.Articles;
-import com.yl.wanandroid.service.ResponseListener;
-import com.yl.wanandroid.view.HomeView;
+import com.yl.wanandroid.service.dto.Articles;
+import com.yl.wanandroid.service.interfaces.ResponseListener;
+import com.yl.wanandroid.view.home.HomeView;
 
 public class HomePresenter extends BasePresenter<HomeView> {
     private HomeModel homeModel;
@@ -16,8 +16,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     public void getArticleList(int index) {
         homeModel.getArticleList(index, new ResponseListener<Articles>() {
             @Override
-            public void onSuccess(Articles data) {
-                view.showArticleList(data);
+            public void onSuccess(Articles data) { view.showArticleList(data);
             }
         }, this);
     }

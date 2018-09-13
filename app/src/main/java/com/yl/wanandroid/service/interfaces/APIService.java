@@ -1,4 +1,7 @@
-package com.yl.wanandroid.service;
+package com.yl.wanandroid.service.interfaces;
+
+import com.yl.wanandroid.service.HttpResponse;
+import com.yl.wanandroid.service.dto.Articles;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

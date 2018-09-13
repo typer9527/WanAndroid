@@ -1,8 +1,8 @@
 package com.yl.wanandroid.model;
 
-import com.yl.wanandroid.service.Articles;
-import com.yl.wanandroid.service.ErrorListener;
-import com.yl.wanandroid.service.ResponseListener;
+import com.yl.wanandroid.service.dto.Articles;
+import com.yl.wanandroid.service.interfaces.ErrorListener;
+import com.yl.wanandroid.service.interfaces.ResponseListener;
 import com.yl.wanandroid.service.RetrofitFactory;
 import com.yl.wanandroid.service.RxService;
 

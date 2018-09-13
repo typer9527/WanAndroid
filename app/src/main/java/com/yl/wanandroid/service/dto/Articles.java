@@ -1,4 +1,4 @@
-package com.yl.wanandroid.service;
+package com.yl.wanandroid.service.dto;
 
 import com.google.gson.annotations.SerializedName;
 
