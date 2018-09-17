@@ -2,6 +2,8 @@ package com.yl.wanandroid.service.dto;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Articles {
@@ -209,6 +211,21 @@ public class Articles {
 
         public long getPublishTime() {
             return publishTime;
+        }
+
+        public String getFormatTime() {
+            Calendar now = Calendar.getInstance();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new Date(publishTime));
+            String time;
+            if (calendar.get(Calendar.YEAR) == now.get(Calendar.YEAR) &&
+                    calendar.get(Calendar.MONTH) == now.get(Calendar.MONTH) &&
+                    calendar.get(Calendar.DAY_OF_MONTH) == now.get(Calendar.DAY_OF_MONTH)) {
+                time = calendar.get(Calendar.HOUR) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND);
+            } else {
+                time = calendar.get(Calendar.YEAR) + "-" + calendar.get(Calendar.MONTH) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
+            }
+            return time;
         }
 
         public void setPublishTime(long publishTime) {

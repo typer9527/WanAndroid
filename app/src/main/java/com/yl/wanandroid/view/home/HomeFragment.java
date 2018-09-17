@@ -36,7 +36,7 @@ public class HomeFragment extends BaseFragment {
         String[] tabTitles = new String[]{"关注", getString(R.string.label_article), getString(R.string.label_project)};
         List<Fragment> fragments = new ArrayList<>();
         for (String ignored : tabTitles) {
-            fragments.add(new Fragment());
+            fragments.add(new ArticleFragment());
         }
         vpHome.setAdapter(new ViewPagerAdapter(getChildFragmentManager(), fragments, Arrays.asList(tabTitles)));
         tlHome.setupWithViewPager(vpHome);

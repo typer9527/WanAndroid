@@ -4,28 +4,28 @@ import com.yl.wanandroid.service.interfaces.ErrorListener;
 
 public abstract class BasePresenter<V extends BaseView> implements ErrorListener {
 
-    protected V view;
+    protected V mView;
 
     public void attach(V view) {
-        this.view = view;
+        this.mView = view;
     }
 
     public void detach() {
-        this.view = null;
+        this.mView = null;
     }
 
     @Override
     public void onTokenInvalid(String errorMsg) {
-        view.onTokenInvalid(errorMsg);
+        mView.onTokenInvalid(errorMsg);
     }
 
     @Override
     public void onError(String errorMsg) {
-        view.onError(errorMsg);
+        mView.onError(errorMsg);
     }
 
     @Override
     public void onNetError() {
-        view.onNetError();
+        mView.onNetError();
     }
 }

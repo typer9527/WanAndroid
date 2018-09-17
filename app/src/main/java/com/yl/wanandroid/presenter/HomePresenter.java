@@ -16,7 +16,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     public void getArticleList(int index) {
         homeModel.getArticleList(index, new ResponseListener<Articles>() {
             @Override
-            public void onSuccess(Articles data) { view.showArticleList(data);
+            public void onSuccess(Articles data) { mView.showArticleList(data);
             }
         }, this);
     }
