@@ -9,6 +9,7 @@ import com.yl.wanandroid.base.BaseMvpFragment;
 import com.yl.wanandroid.model.HomeModel;
 import com.yl.wanandroid.presenter.HomePresenter;
 import com.yl.wanandroid.service.dto.Articles;
+import com.yl.wanandroid.utils.ViewUtils;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,7 @@ public class ArticleFragment extends BaseMvpFragment<HomeView, HomePresenter> im
     @Override
     protected void initView(Bundle arguments) {
         rvHome.setLayoutManager(new LinearLayoutManager(mActivity));
+        ViewUtils.addItemDivider(mActivity, rvHome, R.drawable.shape_rv_divider);
     }
 
     @Override
