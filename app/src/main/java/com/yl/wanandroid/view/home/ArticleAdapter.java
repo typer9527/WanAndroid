@@ -3,11 +3,15 @@ package com.yl.wanandroid.view.home;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.service.dto.Articles;
 
@@ -35,6 +39,10 @@ class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Articles.Article article = list.get(position);
+        RequestOptions options = new RequestOptions()
+                .centerCrop().error(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher);
+        if (!TextUtils.isEmpty(article.getEnvelopePic()))
+            Glide.with(mContext).load(article.getEnvelopePic()).apply(options).into(holder.ivCover);
         holder.tvTitle.setText(article.getTitle());
         holder.tvAuthorAndTime.setText(mContext.getString(R.string.label_author_and_time, article.getAuthor(), article.getFormatTime()));
         holder.tvCategory.setText(article.getChapterName());
@@ -46,6 +54,8 @@ class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.iv_cover)
+        ImageView ivCover;
         @BindView(R.id.tv_title)
         TextView tvTitle;
         @BindView(R.id.tv_author_and_time)

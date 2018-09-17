@@ -4,5 +4,5 @@ import com.yl.wanandroid.base.BaseView;
 import com.yl.wanandroid.service.dto.Articles;
 
 public interface HomeView extends BaseView {
-    void showArticleList(Articles articles);
+    void showArticleList(Articles articles, boolean isRefresh);
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.yl.wanandroid.R;
 import com.yl.wanandroid.utils.ToastUtils;
 
 /**
@@ -38,13 +39,13 @@ public abstract class BaseMvpFragment<V extends BaseView, P extends BasePresente
 
     @Override
     public void onNetError() {
-        ToastUtils.showShort(mActivity, "网络异常");
+        ToastUtils.showShort(mActivity, getString(R.string.label_net_error));
     }
 
     @Override
     public void onTokenInvalid(String errorMsg) {
         Log.e(TAG, "onTokenInvalid: " + errorMsg);
-        ToastUtils.showShort(mActivity, "登录过期");
+        ToastUtils.showShort(mActivity, getString(R.string.label_login_expired));
     }
 
     @Override

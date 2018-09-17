@@ -51,7 +51,7 @@ public class ViewUtils {
                 divider.setDrawable(drawableDivider);
                 recyclerView.addItemDecoration(divider);
             } else {
-                Log.e(TAG, "addItemDivider: ");
+                Log.e(TAG, "addItemDivider: drawable is null");
             }
         }
     }

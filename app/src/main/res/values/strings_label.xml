@@ -20,4 +20,6 @@
     <string name="label_author_and_time">%s.%s</string>
     <string name="label_search">搜索</string>
     <string name="label_setting">设置</string>
+    <string name="label_net_error">当前网络不可用</string>
+    <string name="label_login_expired">登录过期</string>
 </resources>
