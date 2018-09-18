@@ -46,6 +46,8 @@ class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolder> {
         holder.tvTitle.setText(article.getTitle());
         holder.tvAuthorAndTime.setText(mContext.getString(R.string.label_author_and_time, article.getAuthor(), article.getFormatTime()));
         holder.tvCategory.setText(article.getChapterName());
+        holder.ivCollect.setImageResource(article.isCollect() ?
+                R.drawable.ic_collected : R.drawable.ic_not_collected);
     }
 
     @Override
@@ -62,6 +64,8 @@ class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolder> {
         TextView tvAuthorAndTime;
         @BindView(R.id.tv_category)
         TextView tvCategory;
+        @BindView(R.id.iv_collect)
+        ImageView ivCollect;
 
         ViewHolder(View itemView) {
             super(itemView);

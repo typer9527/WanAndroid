@@ -7,8 +7,14 @@ import com.yl.wanandroid.service.interfaces.APIService;
 import com.yl.wanandroid.utils.Constant;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -49,7 +55,9 @@ public class RetrofitFactory {
                         Request request = chain.request();
                         return chain.proceed(request);
                     }
-                }).connectTimeout(TIME_OUT, TimeUnit.SECONDS);
+                })
+                .cookieJar(AuthCookies.getInstance())
+                .connectTimeout(TIME_OUT, TimeUnit.SECONDS);
         /*
          * 构造函数私有化
          * 并在构造函数中进行retrofit的初始化

@@ -10,7 +10,19 @@ public class PrefsUtils {
         return context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
     }
 
+    public static void setBoolean(Context context, String key, boolean value) {
+        getSharedPreferences(context).edit().putBoolean(key, value).apply();
+    }
+
     public static boolean getBoolean(Context context, String key) {
         return getSharedPreferences(context).getBoolean(key, false);
+    }
+
+    public static void setString(Context context, String key, String value) {
+        getSharedPreferences(context).edit().putString(key, value).apply();
+    }
+
+    public static String getString(Context context, String key) {
+        return getSharedPreferences(context).getString(key, null);
     }
 }

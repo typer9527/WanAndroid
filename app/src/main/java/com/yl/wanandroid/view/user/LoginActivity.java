@@ -15,6 +15,8 @@ import com.yl.wanandroid.R;
 import com.yl.wanandroid.base.BaseMvpActivity;
 import com.yl.wanandroid.model.UserModel;
 import com.yl.wanandroid.presenter.UserPresenter;
+import com.yl.wanandroid.utils.Constant;
+import com.yl.wanandroid.utils.PrefsUtils;
 import com.yl.wanandroid.utils.ToastUtils;
 import com.yl.wanandroid.view.MainActivity;
 
@@ -97,6 +99,7 @@ public class LoginActivity extends BaseMvpActivity<UserView, UserPresenter> impl
 
     @Override
     public void onLoginOrRegisterSucceed() {
+        PrefsUtils.setBoolean(this, Constant.KEY_IS_LOGON, true);
         dismissProgressDialog();
         ToastUtils.showShort(this, getString(R.string.label_login_succeed));
         Intent intent = new Intent(this, MainActivity.class);
