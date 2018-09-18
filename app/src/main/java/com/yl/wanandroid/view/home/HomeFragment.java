@@ -41,7 +41,7 @@ public class HomeFragment extends BaseFragment {
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new Fragment());
         fragments.add(new ArticleFragment());
-        fragments.add(new Fragment());
+        fragments.add(new ProjectFragment());
         vpHome.setAdapter(new ViewPagerAdapter(getChildFragmentManager(), fragments, Arrays.asList(tabTitles)));
         tlHome.setupWithViewPager(vpHome);
         // 设置默认选中最新页面

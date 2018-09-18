@@ -21,14 +21,13 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class ArticleFragment extends BaseMvpFragment<HomeView, HomePresenter> implements HomeView, OnRefreshLoadMoreListener {
+public class ProjectFragment extends BaseMvpFragment<HomeView, HomePresenter> implements HomeView, OnRefreshLoadMoreListener {
     @BindView(R.id.srl_home)
     SmartRefreshLayout srlHome;
     @BindView(R.id.rv_home)
     RecyclerView rvHome;
     private int currentIndex;
     private ArrayList<Articles.Article> list;
-    private List<BannerData> banners;
     private ArticleAdapter adapter;
 
     @Override
@@ -55,8 +54,7 @@ public class ArticleFragment extends BaseMvpFragment<HomeView, HomePresenter> im
     @Override
     protected void initData() {
         list = new ArrayList<>();
-        banners = new ArrayList<>();
-        adapter = new ArticleAdapter(banners, list);
+        adapter = new ArticleAdapter(list);
         rvHome.setAdapter(adapter);
         currentIndex = 0;
         srlHome.autoRefresh();
@@ -73,19 +71,18 @@ public class ArticleFragment extends BaseMvpFragment<HomeView, HomePresenter> im
 
     @Override
     public void showBanners(List<BannerData> data) {
-        adapter.refreshBanners(data);
+
     }
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mPresenter.getArticleList(++currentIndex, false);
+        mPresenter.getProjectList(++currentIndex, 0, false);
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         currentIndex = 0;
-        mPresenter.getArticleList(currentIndex, true);
-        mPresenter.getBanners();
+        mPresenter.getProjectList(currentIndex, 0, true);
     }
 
     @Override
