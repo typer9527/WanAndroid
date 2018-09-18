@@ -2,7 +2,6 @@ package com.yl.wanandroid.view.user;
 
 import android.content.Intent;
 import android.graphics.Paint;
-import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -13,12 +12,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.yl.wanandroid.R;
-import com.yl.wanandroid.base.BaseActivity;
+import com.yl.wanandroid.base.BaseMvpActivity;
+import com.yl.wanandroid.model.UserModel;
+import com.yl.wanandroid.presenter.UserPresenter;
 import com.yl.wanandroid.utils.ToastUtils;
+import com.yl.wanandroid.view.MainActivity;
 
 import butterknife.BindView;
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener, TextWatcher {
+public class LoginActivity extends BaseMvpActivity<UserView, UserPresenter> implements UserView, View.OnClickListener, TextWatcher {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tv_register)
@@ -81,16 +83,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 startActivity(new Intent(this, RegisterActivity.class));
                 break;
             case R.id.btn_login:
+                mPresenter.login(etLoginName.getText().toString(), etLoginPsw.getText().toString());
                 showProgressDialog(getString(R.string.label_logining));
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        dismissProgressDialog();
-                        ToastUtils.showShort(LoginActivity.this, "登录失败");
-                    }
-                }, 2000);
                 break;
             default:
         }
+    }
+
+    @Override
+    public UserPresenter initPresenter() {
+        return new UserPresenter(new UserModel());
+    }
+
+    @Override
+    public void onLoginOrRegisterSucceed() {
+        dismissProgressDialog();
+        ToastUtils.showShort(this, getString(R.string.label_login_succeed));
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

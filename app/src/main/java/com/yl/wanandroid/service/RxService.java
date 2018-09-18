@@ -33,7 +33,7 @@ public class RxService {
                     @Override
                     public void onNext(HttpResponse<T> response) {
                         if (response.getErrorCode() == 0) {
-                            listener.onSuccess(response.getData());
+                            listener.onSuccess(response);
                         } else if (response.getErrorCode() == -1001) {
                             errorListener.onTokenInvalid(response.getErrorMsg());
                         } else {

@@ -33,7 +33,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.user.LoginActivity" />
-        <activity android:name=".view.user.RegisterActivity" />
+        <activity
+            android:name=".view.user.RegisterActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
             android:name=".view.IntroActivity"
             android:theme="@style/AppTheme.FullScreen" />
