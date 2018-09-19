@@ -19,8 +19,4 @@ public class HomeModel extends BaseModel {
     public void getBanners(ResponseListener<List<BannerData>> listener, ErrorListener errorListener) {
         rxService.add(apiService.getBanners(), listener, errorListener);
     }
-
-    public void getProjectList(int index, int id,ResponseListener<Articles> listener, ErrorListener errorListener) {
-        rxService.add(apiService.getProjectList(index, id), listener, errorListener);
-    }
 }

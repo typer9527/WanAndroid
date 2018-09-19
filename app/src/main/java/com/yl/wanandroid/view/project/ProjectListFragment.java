@@ -10,27 +10,38 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.base.BaseMvpFragment;
-import com.yl.wanandroid.model.HomeModel;
-import com.yl.wanandroid.presenter.HomePresenter;
+import com.yl.wanandroid.model.ProjectModel;
+import com.yl.wanandroid.presenter.ProjectPresenter;
 import com.yl.wanandroid.service.dto.Articles;
-import com.yl.wanandroid.service.dto.BannerData;
+import com.yl.wanandroid.service.dto.ProjectCategory;
+import com.yl.wanandroid.utils.Constant;
 import com.yl.wanandroid.utils.ViewUtils;
-import com.yl.wanandroid.view.home.HomeView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-public class ProjectListFragment extends BaseMvpFragment<HomeView, HomePresenter> implements HomeView, OnRefreshLoadMoreListener {
+public class ProjectListFragment extends BaseMvpFragment<ProjectView, ProjectPresenter> implements ProjectView, OnRefreshLoadMoreListener {
     @BindView(R.id.srl_list)
     SmartRefreshLayout srl_project;
     @BindView(R.id.rv_list)
     RecyclerView rv_project;
-    private int currentIndex;
+    private int currentIndex, categoryId;
+    private List<Articles.Article> list;
+    private ProjectAdapter adapter;
+
+    public static ProjectListFragment newInstance(int categoryId) {
+        Bundle args = new Bundle();
+        args.putInt(Constant.KEY_CATEGORY_ID, categoryId);
+        ProjectListFragment fragment = new ProjectListFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
-    public HomePresenter initPresenter() {
-        return new HomePresenter(new HomeModel());
+    public ProjectPresenter initPresenter() {
+        return new ProjectPresenter(new ProjectModel());
     }
 
     @Override
@@ -40,8 +51,9 @@ public class ProjectListFragment extends BaseMvpFragment<HomeView, HomePresenter
 
     @Override
     protected void initView(Bundle arguments) {
+        categoryId = arguments.getInt(Constant.KEY_CATEGORY_ID, -1);
         rv_project.setLayoutManager(new LinearLayoutManager(mActivity));
-        ViewUtils.addItemDivider(mActivity, rv_project, R.drawable.shape_rv_divider);
+        ViewUtils.addItemDivider(mActivity, rv_project, ViewUtils.DIVIDER_DEFAULT);
     }
 
     @Override
@@ -52,28 +64,21 @@ public class ProjectListFragment extends BaseMvpFragment<HomeView, HomePresenter
     @Override
     protected void initData() {
         currentIndex = 0;
-    }
-
-    @Override
-    public void showArticleList(Articles articles, boolean isRefresh) {
-        srl_project.finishRefresh();
-        srl_project.finishLoadMore();
-    }
-
-    @Override
-    public void showBanners(List<BannerData> data) {
-
+        list = new ArrayList<>();
+        adapter = new ProjectAdapter(list);
+        rv_project.setAdapter(adapter);
+        srl_project.autoRefresh();
     }
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mPresenter.getProjectList(++currentIndex, 0, false);
+        mPresenter.getProjectList(++currentIndex, categoryId, false);
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         currentIndex = 0;
-        mPresenter.getProjectList(currentIndex, 0, true);
+        mPresenter.getProjectList(currentIndex, categoryId, true);
     }
 
     @Override
@@ -88,5 +93,19 @@ public class ProjectListFragment extends BaseMvpFragment<HomeView, HomePresenter
         super.onError(errorMsg);
         srl_project.finishRefresh();
         srl_project.finishLoadMore();
+    }
+
+    @Override
+    public void showProjectCategory(List<ProjectCategory> list) {
+
+    }
+
+    @Override
+    public void showProjectList(Articles data, boolean isRefresh) {
+        srl_project.finishRefresh();
+        srl_project.finishLoadMore();
+        if (isRefresh) list.clear();
+        list.addAll(data.getArticles());
+        adapter.notifyDataSetChanged();
     }
 }

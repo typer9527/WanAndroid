@@ -35,13 +35,4 @@ public class HomePresenter extends BasePresenter<HomeView> {
             }
         }, this);
     }
-
-    public void getProjectList(int index, int id, final boolean isRefresh) {
-        homeModel.getProjectList(index, id, new ResponseListener<Articles>() {
-            @Override
-            public void onSuccess(HttpResponse<Articles> response) {
-                mView.showArticleList(response.getData(), isRefresh);
-            }
-        }, this);
-    }
 }

@@ -11,6 +11,7 @@ import com.yl.wanandroid.adapter.ViewPagerAdapter;
 import com.yl.wanandroid.base.BaseMvpFragment;
 import com.yl.wanandroid.model.ProjectModel;
 import com.yl.wanandroid.presenter.ProjectPresenter;
+import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.ProjectCategory;
 
 import java.util.ArrayList;
@@ -55,9 +56,14 @@ public class ProjectFragment extends BaseMvpFragment<ProjectView, ProjectPresent
             String name = category.getName().contains("&amp;") ?
                     category.getName().replace("&amp;", "&") : category.getName();
             categories.add(name);
-            fragments.add(new ProjectListFragment());
+            fragments.add(ProjectListFragment.newInstance(category.getId()));
         }
         vpProject.setAdapter(new ViewPagerAdapter(getChildFragmentManager(), fragments, categories));
         tlProject.setupWithViewPager(vpProject);
+    }
+
+    @Override
+    public void showProjectList(Articles data, boolean isRefresh) {
+
     }
 }
