@@ -4,6 +4,7 @@ import com.yl.wanandroid.service.HttpResponse;
 import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.BannerData;
 import com.yl.wanandroid.service.dto.EmptyData;
+import com.yl.wanandroid.service.dto.ProjectCategory;
 import com.youth.banner.Banner;
 
 import java.util.List;
@@ -38,4 +39,7 @@ public interface APIService {
 
     @GET("project/list/{index}/json")
     Observable<HttpResponse<Articles>> getProjectList(@Path("index") int index, @Query("cid") int id);
+
+    @GET("project/tree/json")
+    Observable<HttpResponse<List<ProjectCategory>>> getProjectCategory();
 }

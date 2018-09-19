@@ -1,4 +1,4 @@
-package com.yl.wanandroid.view.home;
+package com.yl.wanandroid.view.project;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,20 +15,18 @@ import com.yl.wanandroid.presenter.HomePresenter;
 import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.BannerData;
 import com.yl.wanandroid.utils.ViewUtils;
+import com.yl.wanandroid.view.home.HomeView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-public class ArticleFragment extends BaseMvpFragment<HomeView, HomePresenter> implements HomeView, OnRefreshLoadMoreListener {
+public class ProjectListFragment extends BaseMvpFragment<HomeView, HomePresenter> implements HomeView, OnRefreshLoadMoreListener {
     @BindView(R.id.srl_home)
     SmartRefreshLayout srlHome;
     @BindView(R.id.rv_home)
     RecyclerView rvHome;
     private int currentIndex;
-    private ArrayList<Articles.Article> list;
-    private ArticleAdapter adapter;
 
     @Override
     public HomePresenter initPresenter() {
@@ -37,7 +35,7 @@ public class ArticleFragment extends BaseMvpFragment<HomeView, HomePresenter> im
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_article;
+        return R.layout.fragment_home;
     }
 
     @Override
@@ -53,37 +51,29 @@ public class ArticleFragment extends BaseMvpFragment<HomeView, HomePresenter> im
 
     @Override
     protected void initData() {
-        list = new ArrayList<>();
-        adapter = new ArticleAdapter(new ArrayList<BannerData>(), list);
-        rvHome.setAdapter(adapter);
         currentIndex = 0;
-        srlHome.autoRefresh();
     }
 
     @Override
     public void showArticleList(Articles articles, boolean isRefresh) {
         srlHome.finishRefresh();
         srlHome.finishLoadMore();
-        if (isRefresh) list.clear();
-        list.addAll(articles.getArticles());
-        adapter.notifyDataSetChanged();
     }
 
     @Override
     public void showBanners(List<BannerData> data) {
-        adapter.refreshBanners(data);
+
     }
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mPresenter.getArticleList(++currentIndex, false);
+        mPresenter.getProjectList(++currentIndex, 0, false);
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         currentIndex = 0;
-        mPresenter.getArticleList(currentIndex, true);
-        mPresenter.getBanners();
+        mPresenter.getProjectList(currentIndex, 0, true);
     }
 
     @Override

@@ -8,8 +8,9 @@ import android.view.MenuItem;
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.adapter.ViewPagerAdapter;
 import com.yl.wanandroid.base.BaseActivity;
-import com.yl.wanandroid.view.home.HomeFragment;
 import com.yl.wanandroid.utils.ViewUtils;
+import com.yl.wanandroid.view.home.HomeFragment;
+import com.yl.wanandroid.view.project.ProjectFragment;
 import com.yl.wanandroid.widget.NoScrollViewPager;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     public void initData() {
         List<Fragment> mFragments = new ArrayList<>();
         mFragments.add(new HomeFragment());
-        mFragments.add(new Fragment());
+        mFragments.add(new ProjectFragment());
         mFragments.add(new Fragment());
         mFragments.add(new Fragment());
         vpMain.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), mFragments));

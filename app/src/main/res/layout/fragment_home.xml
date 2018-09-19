@@ -1,36 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/abl_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tb_home"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_scrollFlags="snap|scroll|enterAlways"
-            app:title="@string/label_home"
-            app:titleTextColor="@color/colorWhite" />
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tl_home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabIndicatorColor="@color/colorWhite"
-            app:tabIndicatorHeight="2dp"
-            app:tabSelectedTextColor="@color/colorWhite"
-            app:tabTextColor="@color/ColorLightBlue" />
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_home"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/srl_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-</android.support.design.widget.CoordinatorLayout>
+        app:srlEnablePreviewInEditMode="true">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</android.support.constraint.ConstraintLayout>
