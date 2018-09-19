@@ -16,6 +16,7 @@ import com.yl.wanandroid.R;
 import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.BannerData;
 import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
@@ -45,11 +46,13 @@ class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.banners.clear();
         this.banners.addAll(banners);
         List<String> imageUrls = new ArrayList<>();
+        List<String> titles = new ArrayList<>();
         for (BannerData banner : this.banners) {
             imageUrls.add(banner.getImagePath());
+            titles.add(banner.getTitle());
         }
         if (bannerView != null)
-            bannerView.update(imageUrls);
+            bannerView.update(imageUrls, titles);
     }
 
     @Override
@@ -79,9 +82,9 @@ class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         switch (getItemViewType(position)) {
             case TYPE_BANNER:
                 BannerHolder bannerHolder = (BannerHolder) holder;
+                bannerHolder.bannerHome.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
                 bannerHolder.bannerHome.setImageLoader(new BannerLoader());
                 bannerView = bannerHolder.bannerHome;
-                //refreshBanners(banners);
                 break;
             case TYPE_ARTICLE:
             default:
@@ -93,8 +96,10 @@ class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 if (!TextUtils.isEmpty(article.getEnvelopePic()))
                     Glide.with(mContext).load(article.getEnvelopePic()).apply(options).into(articleHolder.ivCover);
                 articleHolder.tvTitle.setText(article.getTitle());
-                articleHolder.tvAuthorAndTime.setText(mContext.getString(R.string.label_author_and_time, article.getAuthor(), article.getFormatTime()));
-                articleHolder.tvCategory.setText(article.getChapterName());
+                articleHolder.tvAuthorAndTime.setText(mContext.getString(R.string.label_author_and_time, article.getAuthor(), article.getNiceDate()));
+                // 无Banner表示项目列表则显示子级分类
+                String category = banners == null ? article.getSuperChapterName() : article.getChapterName();
+                articleHolder.tvCategory.setText(category);
                 articleHolder.ivCollect.setImageResource(article.isCollect() ?
                         R.drawable.ic_collected : R.drawable.ic_not_collected);
         }
@@ -102,7 +107,7 @@ class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return banners != null ? list.size() + 1 : list.size();
     }
 
     class ArticleHolder extends RecyclerView.ViewHolder {

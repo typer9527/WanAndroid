@@ -28,7 +28,6 @@ public class ArticleFragment extends BaseMvpFragment<HomeView, HomePresenter> im
     RecyclerView rvHome;
     private int currentIndex;
     private ArrayList<Articles.Article> list;
-    private List<BannerData> banners;
     private ArticleAdapter adapter;
 
     @Override
@@ -55,8 +54,7 @@ public class ArticleFragment extends BaseMvpFragment<HomeView, HomePresenter> im
     @Override
     protected void initData() {
         list = new ArrayList<>();
-        banners = new ArrayList<>();
-        adapter = new ArticleAdapter(banners, list);
+        adapter = new ArticleAdapter(new ArrayList<BannerData>(), list);
         rvHome.setAdapter(adapter);
         currentIndex = 0;
         srlHome.autoRefresh();
