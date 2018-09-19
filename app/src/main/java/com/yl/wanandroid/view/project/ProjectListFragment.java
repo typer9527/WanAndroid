@@ -22,10 +22,10 @@ import java.util.List;
 import butterknife.BindView;
 
 public class ProjectListFragment extends BaseMvpFragment<HomeView, HomePresenter> implements HomeView, OnRefreshLoadMoreListener {
-    @BindView(R.id.srl_home)
-    SmartRefreshLayout srlHome;
-    @BindView(R.id.rv_home)
-    RecyclerView rvHome;
+    @BindView(R.id.srl_list)
+    SmartRefreshLayout srl_project;
+    @BindView(R.id.rv_list)
+    RecyclerView rv_project;
     private int currentIndex;
 
     @Override
@@ -35,18 +35,18 @@ public class ProjectListFragment extends BaseMvpFragment<HomeView, HomePresenter
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_home;
+        return R.layout.fragment_rv_list;
     }
 
     @Override
     protected void initView(Bundle arguments) {
-        rvHome.setLayoutManager(new LinearLayoutManager(mActivity));
-        ViewUtils.addItemDivider(mActivity, rvHome, R.drawable.shape_rv_divider);
+        rv_project.setLayoutManager(new LinearLayoutManager(mActivity));
+        ViewUtils.addItemDivider(mActivity, rv_project, R.drawable.shape_rv_divider);
     }
 
     @Override
     protected void initListener() {
-        srlHome.setOnRefreshLoadMoreListener(this);
+        srl_project.setOnRefreshLoadMoreListener(this);
     }
 
     @Override
@@ -56,8 +56,8 @@ public class ProjectListFragment extends BaseMvpFragment<HomeView, HomePresenter
 
     @Override
     public void showArticleList(Articles articles, boolean isRefresh) {
-        srlHome.finishRefresh();
-        srlHome.finishLoadMore();
+        srl_project.finishRefresh();
+        srl_project.finishLoadMore();
     }
 
     @Override
@@ -79,14 +79,14 @@ public class ProjectListFragment extends BaseMvpFragment<HomeView, HomePresenter
     @Override
     public void onNetError() {
         super.onNetError();
-        srlHome.finishRefresh();
-        srlHome.finishLoadMore();
+        srl_project.finishRefresh();
+        srl_project.finishLoadMore();
     }
 
     @Override
     public void onError(String errorMsg) {
         super.onError(errorMsg);
-        srlHome.finishRefresh();
-        srlHome.finishLoadMore();
+        srl_project.finishRefresh();
+        srl_project.finishLoadMore();
     }
 }
