@@ -1,20 +1,13 @@
 package com.yl.wanandroid.service;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.yl.wanandroid.service.interfaces.APIService;
 import com.yl.wanandroid.utils.Constant;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Cookie;
-import okhttp3.CookieJar;
-import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -23,14 +16,13 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by Lee on 2018/3/1.
  */
 
 public class RetrofitFactory {
-    private static final String TAG = "RetrofitFactory";
+    //private static final String TAG = "RetrofitFactory";
     private static final int TIME_OUT = 5;
     private static APIService apiService;
     private static RetrofitFactory retrofitFactory;
@@ -66,7 +58,6 @@ public class RetrofitFactory {
                 .baseUrl(Constant.BASE_URL)
                 .client(client.build())
                 .addConverterFactory(GsonConverterFactory.create())
-                .addConverterFactory(ScalarsConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         apiService = retrofit.create(APIService.class);

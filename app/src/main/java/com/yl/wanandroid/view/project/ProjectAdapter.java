@@ -3,6 +3,7 @@ package com.yl.wanandroid.view.project;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +45,7 @@ class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectHolder> 
         Glide.with(mContext).load(R.mipmap.ic_launcher_round).apply(options.circleCrop()).into(holder.ivAvatar);
         if (!TextUtils.isEmpty(article.getEnvelopePic()))
             Glide.with(mContext).load(article.getEnvelopePic()).apply(options.centerCrop()).into(holder.ivCover);
-        holder.tvTitle.setText(article.getTitle());
+        holder.tvTitle.setText(Html.fromHtml(article.getTitle()));
         holder.tvDes.setText(article.getDesc().trim());
         holder.tvAuthorAndTime.setText(mContext.getString(R.string.label_author_and_time, article.getAuthor(), article.getNiceDate()));
     }

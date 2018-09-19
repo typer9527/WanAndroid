@@ -3,6 +3,7 @@ package com.yl.wanandroid.view.home;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +44,7 @@ class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleHolder> 
                 .centerCrop().error(R.drawable.ic_android).placeholder(R.drawable.ic_android);
         if (!TextUtils.isEmpty(article.getEnvelopePic()))
             Glide.with(mContext).load(article.getEnvelopePic()).apply(options).into(holder.ivCover);
-        holder.tvTitle.setText(article.getTitle());
+        holder.tvTitle.setText(Html.fromHtml(article.getTitle()));
         holder.tvAuthorAndTime.setText(mContext.getString(R.string.label_author_and_time, article.getAuthor(), article.getNiceDate()));
         holder.tvCategory.setText(mContext.getString(R.string.label_mark_category, article.getSuperChapterName(), article.getChapterName()));
         holder.ivCollect.setImageResource(article.isCollect() ?
