@@ -4,14 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff"
-    android:paddingBottom="10dp"
-    android:paddingTop="10dp">
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/iv_avatar"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:layout_margin="10dp"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -19,7 +17,7 @@
         android:id="@+id/tv_title"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:ellipsize="end"
         android:gravity="center_vertical"
@@ -34,31 +32,42 @@
 
     <ImageView
         android:id="@+id/iv_cover"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_android"
+        app:layout_constraintBottom_toBottomOf="@id/tv_author_and_time"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="3"
         app:layout_constraintTop_toBottomOf="@id/iv_avatar" />
 
     <TextView
         android:id="@+id/tv_des"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:ellipsize="end"
-        android:lineSpacingExtra="2dp"
-        android:maxLines="3"
+        android:lineSpacingExtra="5dp"
+        android:lines="5"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/text_size_small"
-        app:layout_constraintTop_toBottomOf="@id/iv_cover" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="3"
+        app:layout_constraintStart_toEndOf="@id/iv_cover"
+        app:layout_constraintTop_toBottomOf="@id/iv_avatar" />
 
     <TextView
         android:id="@+id/tv_author_and_time"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:textSize="@dimen/text_size_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_cover"
         app:layout_constraintTop_toBottomOf="@id/tv_des" />
 </android.support.constraint.ConstraintLayout>

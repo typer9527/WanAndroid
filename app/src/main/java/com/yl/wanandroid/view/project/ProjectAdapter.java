@@ -46,7 +46,7 @@ class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectHolder> 
         if (!TextUtils.isEmpty(article.getEnvelopePic()))
             Glide.with(mContext).load(article.getEnvelopePic()).apply(options.centerCrop()).into(holder.ivCover);
         holder.tvTitle.setText(Html.fromHtml(article.getTitle()));
-        holder.tvDes.setText(article.getDesc().trim());
+        holder.tvDes.setText(Html.fromHtml(article.getDesc()));
         holder.tvAuthorAndTime.setText(mContext.getString(R.string.label_author_and_time, article.getAuthor(), article.getNiceDate()));
     }
 
