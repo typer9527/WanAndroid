@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 
 import com.yl.wanandroid.R;
+import com.yl.wanandroid.utils.ToastUtils;
 
 import butterknife.ButterKnife;
 
@@ -77,6 +78,21 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
         }
+    }
+
+    public void showNetError() {
+        dismissProgressDialog();
+        ToastUtils.showShort(this, getString(R.string.label_net_error));
+    }
+
+    public void showTokenInvalid(String errorMsg) {
+        dismissProgressDialog();
+        ToastUtils.showShort(this, getString(R.string.label_login_expired));
+    }
+
+    public void showError(String errorMsg) {
+        dismissProgressDialog();
+        ToastUtils.showShort(this, errorMsg);
     }
 }
 

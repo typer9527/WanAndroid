@@ -15,13 +15,20 @@
             android:id="@+id/tb_web"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@drawable/ic_arrow_back" />
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:titleTextColor="@color/colorWhite" />
     </android.support.design.widget.AppBarLayout>
 
-    <WebView
-        android:id="@+id/wv_web"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_web"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/abl_web" />
+        app:layout_constraintTop_toBottomOf="@id/abl_web">
+
+        <WebView
+            android:id="@+id/wv_web"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 </android.support.constraint.ConstraintLayout>
