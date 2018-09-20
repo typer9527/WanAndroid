@@ -15,7 +15,7 @@ import com.yl.wanandroid.R;
 import com.yl.wanandroid.base.BaseMvpActivity;
 import com.yl.wanandroid.model.UserModel;
 import com.yl.wanandroid.presenter.UserPresenter;
-import com.yl.wanandroid.utils.Constant;
+import com.yl.wanandroid.app.Constant;
 import com.yl.wanandroid.utils.PrefsUtils;
 import com.yl.wanandroid.utils.ToastUtils;
 import com.yl.wanandroid.view.MainActivity;

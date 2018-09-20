@@ -3,7 +3,7 @@ package com.yl.wanandroid.service;
 import android.support.annotation.NonNull;
 
 import com.yl.wanandroid.service.interfaces.APIService;
-import com.yl.wanandroid.utils.Constant;
+import com.yl.wanandroid.app.Constant;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;

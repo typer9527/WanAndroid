@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 
 import com.yl.wanandroid.R;
-import com.yl.wanandroid.adapter.ViewPagerAdapter;
+import com.yl.wanandroid.base.ViewPagerAdapter;
 import com.yl.wanandroid.base.BaseActivity;
 import com.yl.wanandroid.utils.ViewUtils;
 import com.yl.wanandroid.view.home.HomeFragment;

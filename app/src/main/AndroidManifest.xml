@@ -3,6 +3,7 @@
     package="com.yl.wanandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".app.MyApplication"
         android:allowBackup="false"
@@ -40,6 +41,7 @@
         <activity
             android:name=".view.IntroActivity"
             android:theme="@style/AppTheme.FullScreen" />
+        <activity android:name=".view.WebActivity" />
     </application>
 
 </manifest>

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.yl.wanandroid.R;
+import com.yl.wanandroid.base.BaseRVAdapter;
 import com.yl.wanandroid.service.dto.Articles;
 
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectHolder> {
+class ProjectAdapter extends BaseRVAdapter<ProjectAdapter.ProjectHolder> {
     private List<Articles.Article> list;
     private Context mContext;
 
@@ -38,7 +39,7 @@ class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProjectHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ProjectHolder holder, int position) {
         Articles.Article article = list.get(position);
         RequestOptions options = new RequestOptions()
                 .error(R.drawable.ic_android).placeholder(R.drawable.ic_android);
@@ -48,6 +49,12 @@ class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectHolder> 
         holder.tvTitle.setText(Html.fromHtml(article.getTitle()));
         holder.tvDes.setText(Html.fromHtml(article.getDesc()));
         holder.tvAuthorAndTime.setText(mContext.getString(R.string.label_author_and_time, article.getAuthor(), article.getNiceDate()));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(holder.getAdapterPosition());
+            }
+        });
     }
 
     @Override

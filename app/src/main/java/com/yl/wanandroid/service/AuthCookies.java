@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.yl.wanandroid.utils.Constant;
+import com.yl.wanandroid.app.Constant;
 import com.yl.wanandroid.utils.PrefsUtils;
 
 import java.util.ArrayList;

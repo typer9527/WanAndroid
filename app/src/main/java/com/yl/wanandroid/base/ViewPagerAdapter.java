@@ -1,4 +1,4 @@
-package com.yl.wanandroid.adapter;
+package com.yl.wanandroid.base;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;

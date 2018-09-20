@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 
 import com.yl.wanandroid.R;
-import com.yl.wanandroid.adapter.ViewPagerAdapter;
+import com.yl.wanandroid.base.ViewPagerAdapter;
 import com.yl.wanandroid.base.BaseMvpFragment;
 import com.yl.wanandroid.model.ProjectModel;
 import com.yl.wanandroid.presenter.ProjectPresenter;

@@ -10,19 +10,21 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.base.BaseMvpFragment;
+import com.yl.wanandroid.base.OnItemClickListener;
 import com.yl.wanandroid.model.ProjectModel;
 import com.yl.wanandroid.presenter.ProjectPresenter;
 import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.ProjectCategory;
-import com.yl.wanandroid.utils.Constant;
+import com.yl.wanandroid.app.Constant;
 import com.yl.wanandroid.utils.ViewUtils;
+import com.yl.wanandroid.view.WebActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-public class ProjectListFragment extends BaseMvpFragment<ProjectView, ProjectPresenter> implements ProjectView, OnRefreshLoadMoreListener {
+public class ProjectListFragment extends BaseMvpFragment<ProjectView, ProjectPresenter> implements ProjectView, OnRefreshLoadMoreListener, OnItemClickListener {
     @BindView(R.id.srl_list)
     SmartRefreshLayout srl_project;
     @BindView(R.id.rv_list)
@@ -66,6 +68,7 @@ public class ProjectListFragment extends BaseMvpFragment<ProjectView, ProjectPre
         currentIndex = 0;
         list = new ArrayList<>();
         adapter = new ProjectAdapter(list);
+        adapter.setOnItemClickListener(this);
         rv_project.setAdapter(adapter);
         srl_project.autoRefresh();
     }
@@ -107,5 +110,10 @@ public class ProjectListFragment extends BaseMvpFragment<ProjectView, ProjectPre
         if (isRefresh) list.clear();
         list.addAll(data.getArticles());
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClick(int position) {
+        WebActivity.openWebPage(mActivity, list.get(position).getLink());
     }
 }

@@ -5,7 +5,7 @@ import android.os.Handler;
 
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.base.BaseActivity;
-import com.yl.wanandroid.utils.Constant;
+import com.yl.wanandroid.app.Constant;
 import com.yl.wanandroid.utils.PrefsUtils;
 
 public class SplashActivity extends BaseActivity {

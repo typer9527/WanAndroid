@@ -13,11 +13,13 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.base.BaseMvpFragment;
+import com.yl.wanandroid.base.OnItemClickListener;
 import com.yl.wanandroid.model.HomeModel;
 import com.yl.wanandroid.presenter.HomePresenter;
 import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.BannerData;
 import com.yl.wanandroid.utils.ViewUtils;
+import com.yl.wanandroid.view.WebActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
@@ -27,7 +29,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> implements HomeView, OnRefreshLoadMoreListener {
+public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> implements HomeView, OnRefreshLoadMoreListener, OnItemClickListener {
     @BindView(R.id.banner_home)
     Banner bannerHome;
     @BindView(R.id.srl_home)
@@ -65,6 +67,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
     protected void initData() {
         list = new ArrayList<>();
         adapter = new ArticleAdapter(list);
+        adapter.setOnItemClickListener(this);
         bannerHome.setImages(new ArrayList<>());
         bannerHome.start();
         rvHome.setAdapter(adapter);
@@ -116,6 +119,11 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
         super.onError(errorMsg);
         srlHome.finishRefresh();
         srlHome.finishLoadMore();
+    }
+
+    @Override
+    public void onClick(int position) {
+        WebActivity.openWebPage(mActivity, list.get(position).getLink());
     }
 
     class BannerLoader extends ImageLoader {

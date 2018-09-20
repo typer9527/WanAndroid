@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.yl.wanandroid.R;
+import com.yl.wanandroid.base.BaseRVAdapter;
 import com.yl.wanandroid.service.dto.Articles;
 
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleHolder> {
+class ArticleAdapter extends BaseRVAdapter<ArticleAdapter.ArticleHolder> {
     private List<Articles.Article> list;
     private Context mContext;
 
@@ -38,7 +39,7 @@ class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ArticleHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ArticleHolder holder, int position) {
         Articles.Article article = list.get(position);
         RequestOptions options = new RequestOptions()
                 .centerCrop().error(R.drawable.ic_android).placeholder(R.drawable.ic_android);
@@ -49,6 +50,12 @@ class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleHolder> 
         holder.tvCategory.setText(mContext.getString(R.string.label_mark_category, article.getSuperChapterName(), article.getChapterName()));
         holder.ivCollect.setImageResource(article.isCollect() ?
                 R.drawable.ic_collected : R.drawable.ic_not_collected);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(holder.getAdapterPosition());
+            }
+        });
     }
 
     @Override
