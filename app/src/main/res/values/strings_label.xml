@@ -23,4 +23,6 @@
     <string name="label_login_expired">登录过期</string>
     <string name="label_login_succeed">登录成功</string>
     <string name="label_mark_category">%s/%s</string>
+    <string name="label_collect">收藏</string>
+    <string name="label_share">分享</string>
 </resources>

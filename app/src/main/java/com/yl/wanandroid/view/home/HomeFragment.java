@@ -123,7 +123,8 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
 
     @Override
     public void onClick(int position) {
-        WebActivity.openWebPage(mActivity, list.get(position).getLink());
+        Articles.Article article = list.get(position);
+        WebActivity.openWebPage(mActivity, article.getLink(), article.isCollect());
     }
 
     class BannerLoader extends ImageLoader {
