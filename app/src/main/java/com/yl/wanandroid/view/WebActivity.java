@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.app.Constant;
@@ -37,6 +39,13 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
         boolean isCollected = getIntent().getBooleanExtra(Constant.KEY_IS_COLLECTED, false);
         if (isCollected)
             tbWeb.getMenu().findItem(R.id.item_collect).setIcon(R.drawable.ic_collected_white);
+        wvWeb.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                WebViewActivity.openExternalUrl(WebActivity.this, url);
+                return true;
+            }
+        });
     }
 
     @Override

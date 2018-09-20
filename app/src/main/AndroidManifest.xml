@@ -42,6 +42,7 @@
             android:name=".view.IntroActivity"
             android:theme="@style/AppTheme.FullScreen" />
         <activity android:name=".view.WebActivity" />
+        <activity android:name=".view.WebViewActivity" />
     </application>
 
 </manifest>
