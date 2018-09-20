@@ -25,4 +25,7 @@
     <string name="label_mark_category">%s/%s</string>
     <string name="label_collect">收藏</string>
     <string name="label_share">分享</string>
+    <string name="label_refresh">刷新</string>
+    <string name="label_copy_link">复制链接</string>
+    <string name="label_open_in_browser">在浏览器中打开</string>
 </resources>
