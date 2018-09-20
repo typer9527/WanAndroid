@@ -20,8 +20,10 @@ import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.BannerData;
 import com.yl.wanandroid.utils.ViewUtils;
 import com.yl.wanandroid.view.WebActivity;
+import com.yl.wanandroid.view.WebViewActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
+import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> implements HomeView, OnRefreshLoadMoreListener, OnItemClickListener {
+public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> implements HomeView, OnRefreshLoadMoreListener, OnItemClickListener, OnBannerListener {
     @BindView(R.id.banner_home)
     Banner bannerHome;
     @BindView(R.id.srl_home)
@@ -38,6 +40,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
     RecyclerView rvHome;
     private int currentIndex;
     private ArrayList<Articles.Article> list;
+    private List<BannerData> banners;
     private ArticleAdapter adapter;
 
     @Override
@@ -60,12 +63,14 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
 
     @Override
     protected void initListener() {
+        bannerHome.setOnBannerListener(this);
         srlHome.setOnRefreshLoadMoreListener(this);
     }
 
     @Override
     protected void initData() {
         list = new ArrayList<>();
+        banners = new ArrayList<>();
         adapter = new ArticleAdapter(list);
         adapter.setOnItemClickListener(this);
         bannerHome.setImages(new ArrayList<>());
@@ -85,13 +90,15 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
     }
 
     @Override
-    public void showBanners(List<BannerData> data) {
+    public void showBanners(List<BannerData> banners) {
         List<String> imageUrls = new ArrayList<>();
         List<String> titles = new ArrayList<>();
-        for (BannerData banner : data) {
+        for (BannerData banner : banners) {
             imageUrls.add(banner.getImagePath());
             titles.add(banner.getTitle());
         }
+        this.banners.clear();
+        this.banners.addAll(banners);
         bannerHome.update(imageUrls, titles);
     }
 
@@ -125,6 +132,11 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
     public void onClick(int position) {
         Articles.Article article = list.get(position);
         WebActivity.openWebPage(mActivity, article.getLink(), article.isCollect());
+    }
+
+    @Override
+    public void OnBannerClick(int position) {
+        WebViewActivity.openExternalUrl(mActivity, banners.get(position).getUrl());
     }
 
     class BannerLoader extends ImageLoader {

@@ -65,6 +65,8 @@ public class WebViewActivity extends AppCompatActivity implements Toolbar.OnMenu
         progressBar.setMax(100);
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
+        settings.setUseWideViewPort(true);
+        settings.setLoadWithOverviewMode(true);
         webView.setWebViewClient(new WebViewClient() {
             private boolean isFailed;
 
