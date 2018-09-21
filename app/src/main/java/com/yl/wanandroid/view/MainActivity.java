@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.base.ViewPagerAdapter;
 import com.yl.wanandroid.base.BaseActivity;
+import com.yl.wanandroid.utils.ToastUtils;
 import com.yl.wanandroid.utils.ViewUtils;
 import com.yl.wanandroid.view.home.HomeFragment;
 import com.yl.wanandroid.view.project.ProjectFragment;
@@ -24,6 +25,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     BottomNavigationView bnvMain;
     @BindView(R.id.vp_main)
     NoScrollViewPager vpMain;
+    private long timeMillis = 0;
 
     @Override
     public int getLayoutId() {
@@ -68,5 +70,15 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             default:
         }
         return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - timeMillis < 1000) {
+            super.onBackPressed();
+        } else {
+            timeMillis = System.currentTimeMillis();
+            ToastUtils.showShort(this, getString(R.string.label_press_again_to_exit));
+        }
     }
 }

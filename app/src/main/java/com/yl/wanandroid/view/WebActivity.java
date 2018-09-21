@@ -1,5 +1,6 @@
 package com.yl.wanandroid.view;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,7 +18,8 @@ import com.yl.wanandroid.base.BaseActivity;
 
 import butterknife.BindView;
 
-public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClickListener,
+        SwipeRefreshLayout.OnRefreshListener, View.OnLongClickListener {
     @BindView(R.id.tb_web)
     Toolbar tbWeb;
     @BindView(R.id.wv_web)
@@ -37,6 +39,7 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
         return R.layout.activity_web;
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public void initView() {
         tbWeb.inflateMenu(R.menu.menu_toolbar_web);
@@ -44,6 +47,8 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
         boolean isCollected = getIntent().getBooleanExtra(Constant.KEY_IS_COLLECTED, false);
         if (isCollected)
             tbWeb.getMenu().findItem(R.id.item_collect).setIcon(R.drawable.ic_collected_white);
+        wvWeb.getSettings().setJavaScriptEnabled(true);
+        wvWeb.setOnLongClickListener(this);
         wvWeb.setWebViewClient(new WebViewClient() {
             private boolean isFailed;
 
@@ -113,5 +118,11 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
     @Override
     public void onRefresh() {
         wvWeb.reload();
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        // TODO: 2018/9/21 图片识别与保存
+        return false;
     }
 }

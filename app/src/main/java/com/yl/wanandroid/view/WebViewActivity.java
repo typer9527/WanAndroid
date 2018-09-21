@@ -2,6 +2,9 @@ package com.yl.wanandroid.view;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -90,7 +93,7 @@ public class WebViewActivity extends AppCompatActivity implements Toolbar.OnMenu
             @Override
             public void onPageFinished(WebView view, String url) {
                 if (!isFailed) webView.setVisibility(View.VISIBLE);
-                else showNetError();
+                else showToast(getString(R.string.label_net_error));
             }
         });
         webView.setWebChromeClient(new WebChromeClient() {
@@ -113,8 +116,8 @@ public class WebViewActivity extends AppCompatActivity implements Toolbar.OnMenu
         ibGoFroward.setEnabled(webView.canGoForward());
     }
 
-    private void showNetError() {
-        Toast.makeText(this, getString(R.string.label_net_error), Toast.LENGTH_SHORT).show();
+    private void showToast(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -124,6 +127,15 @@ public class WebViewActivity extends AppCompatActivity implements Toolbar.OnMenu
                 webView.reload();
                 return true;
             case R.id.item_copy_link:
+                ClipboardManager clipboardManager = (ClipboardManager)
+                        getSystemService(Context.CLIPBOARD_SERVICE);
+                if (clipboardManager != null) {
+                    clipboardManager.setPrimaryClip(
+                            ClipData.newPlainText("clip_data", webView.getUrl()));
+                    showToast(getString(R.string.label_link_copied));
+                } else {
+                    showToast(getString(R.string.label_copy_failed));
+                }
                 return true;
             case R.id.item_open_in_browser:
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(webView.getUrl())));
