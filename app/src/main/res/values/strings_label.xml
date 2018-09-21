@@ -31,4 +31,5 @@
     <string name="label_copy_failed">复制失败</string>
     <string name="label_press_again_to_exit">再按一次退出程序</string>
     <string name="label_link_copied">链接已复制</string>
+    <string name="label_click_to_login">点击登录</string>
 </resources>

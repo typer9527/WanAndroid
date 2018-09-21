@@ -6,21 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bnv_main"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abl_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu_main" />
+        android:background="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <View
-        style="@style/DivideLine"
-        app:layout_constraintTop_toTopOf="@id/bnv_main" />
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bnv_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/menu_main" />
+    </android.support.design.widget.AppBarLayout>
 
     <com.yl.wanandroid.widget.NoScrollViewPager
         android:id="@+id/vp_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/bnv_main"
+        app:layout_constraintBottom_toTopOf="@id/abl_main"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

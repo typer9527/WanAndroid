@@ -48,7 +48,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         mFragments.add(new HomeFragment());
         mFragments.add(new ProjectFragment());
         mFragments.add(new Fragment());
-        mFragments.add(new Fragment());
+        mFragments.add(new MineFragment());
         vpMain.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), mFragments));
     }
 
