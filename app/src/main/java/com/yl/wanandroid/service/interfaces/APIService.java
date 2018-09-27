@@ -5,13 +5,10 @@ import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.BannerData;
 import com.yl.wanandroid.service.dto.EmptyData;
 import com.yl.wanandroid.service.dto.ProjectCategory;
-import com.youth.banner.Banner;
 
 import java.util.List;
 
 import io.reactivex.Observable;
-import okhttp3.RequestBody;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -42,4 +39,7 @@ public interface APIService {
 
     @GET("project/tree/json")
     Observable<HttpResponse<List<ProjectCategory>>> getProjectCategory();
+
+    @GET("user/logout/json")
+    Observable<HttpResponse<EmptyData>> signOut();
 }

@@ -2,6 +2,7 @@ package com.yl.wanandroid.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,9 +35,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     @Override
     protected void initView(Bundle arguments) {
         isLogin = PrefsUtils.getBoolean(mActivity, Constant.KEY_IS_LOGON);
-        if (isLogin) {
-            tvLogin.setText(PrefsUtils.getString(mActivity, Constant.KEY_USER_NAME));
-        }
+        String username = PrefsUtils.getString(mActivity, Constant.KEY_USER_NAME);
+        if (isLogin && !TextUtils.isEmpty(username)) tvLogin.setText(username);
     }
 
     @Override

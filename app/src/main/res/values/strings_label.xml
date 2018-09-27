@@ -32,4 +32,11 @@
     <string name="label_press_again_to_exit">再按一次退出程序</string>
     <string name="label_link_copied">链接已复制</string>
     <string name="label_click_to_login">点击登录</string>
+    <string name="label_clean_cache">清理缓存</string>
+    <string name="label_help_callback">求助反馈</string>
+    <string name="label_about">关于</string>
+    <string name="label_sign_out">退出登录</string>
+    <string name="label_app_info">%s Version %s</string>
+    <string name="label_has_signed_out">已退出当前账号</string>
+    <string name="label_on_signing_out">正在退出</string>
 </resources>

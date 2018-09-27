@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
  * Activity基类
  */
 public abstract class BaseActivity extends AppCompatActivity {
-    protected ProgressDialog mProgressDialog;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

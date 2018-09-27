@@ -31,4 +31,13 @@ public class UserPresenter extends BasePresenter<UserView> {
             }
         }, this);
     }
+
+    public void signOut() {
+        model.signOut(new ResponseListener<EmptyData>() {
+            @Override
+            public void onSuccess(HttpResponse<EmptyData> response) {
+                mView.onSignOutSucceed();
+            }
+        }, this);
+    }
 }
