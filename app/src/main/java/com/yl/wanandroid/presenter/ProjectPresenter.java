@@ -13,8 +13,8 @@ import java.util.List;
 public class ProjectPresenter extends BasePresenter<ProjectView> {
     private ProjectModel projectModel;
 
-    public ProjectPresenter(ProjectModel projectModel) {
-        this.projectModel = projectModel;
+    public ProjectPresenter() {
+        this.projectModel = new ProjectModel();
     }
 
     public void getProjectCategory() {

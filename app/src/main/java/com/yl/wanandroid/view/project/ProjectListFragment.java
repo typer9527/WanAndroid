@@ -9,13 +9,12 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yl.wanandroid.R;
+import com.yl.wanandroid.app.Constant;
 import com.yl.wanandroid.base.BaseMvpFragment;
 import com.yl.wanandroid.base.OnItemClickListener;
-import com.yl.wanandroid.model.ProjectModel;
 import com.yl.wanandroid.presenter.ProjectPresenter;
 import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.ProjectCategory;
-import com.yl.wanandroid.app.Constant;
 import com.yl.wanandroid.utils.ViewUtils;
 import com.yl.wanandroid.view.WebActivity;
 
@@ -43,7 +42,7 @@ public class ProjectListFragment extends BaseMvpFragment<ProjectView, ProjectPre
 
     @Override
     public ProjectPresenter initPresenter() {
-        return new ProjectPresenter(new ProjectModel());
+        return new ProjectPresenter();
     }
 
     @Override

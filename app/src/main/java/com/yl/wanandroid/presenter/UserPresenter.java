@@ -10,8 +10,8 @@ import com.yl.wanandroid.view.user.UserView;
 public class UserPresenter extends BasePresenter<UserView> {
     private UserModel model;
 
-    public UserPresenter(UserModel model) {
-        this.model = model;
+    public UserPresenter() {
+        this.model = new UserModel();
     }
 
     public void login(String username, String password) {

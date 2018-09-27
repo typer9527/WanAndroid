@@ -13,7 +13,6 @@ import android.widget.EditText;
 
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.base.BaseMvpActivity;
-import com.yl.wanandroid.model.UserModel;
 import com.yl.wanandroid.presenter.UserPresenter;
 
 import butterknife.BindView;
@@ -76,7 +75,7 @@ public class RegisterActivity extends BaseMvpActivity<UserView, UserPresenter> i
 
     @Override
     public UserPresenter initPresenter() {
-        return new UserPresenter(new UserModel());
+        return new UserPresenter();
     }
 
     @Override
@@ -94,6 +93,11 @@ public class RegisterActivity extends BaseMvpActivity<UserView, UserPresenter> i
                 finish();
             }
         }).show();
+    }
+
+    @Override
+    public void onSignOutSucceed() {
+
     }
 
     @Override

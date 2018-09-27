@@ -46,7 +46,7 @@ public class ProjectFragment extends BaseMvpFragment<ProjectView, ProjectPresent
 
     @Override
     public ProjectPresenter initPresenter() {
-        return new ProjectPresenter(new ProjectModel());
+        return new ProjectPresenter();
     }
 
     @Override

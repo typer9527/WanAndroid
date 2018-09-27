@@ -45,7 +45,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
 
     @Override
     public HomePresenter initPresenter() {
-        return new HomePresenter(new HomeModel());
+        return new HomePresenter();
     }
 
     @Override

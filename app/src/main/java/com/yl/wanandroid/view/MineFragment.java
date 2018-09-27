@@ -11,6 +11,7 @@ import com.yl.wanandroid.app.Constant;
 import com.yl.wanandroid.base.BaseFragment;
 import com.yl.wanandroid.utils.PrefsUtils;
 import com.yl.wanandroid.view.user.LoginActivity;
+import com.yl.wanandroid.view.user.SettingActivity;
 
 import butterknife.BindView;
 
@@ -55,6 +56,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             case R.id.ll_collect:
                 break;
             case R.id.ll_setting:
+                startActivity(new Intent(mActivity, SettingActivity.class));
                 break;
             default:
         }

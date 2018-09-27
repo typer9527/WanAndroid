@@ -7,15 +7,14 @@ import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.BannerData;
 import com.yl.wanandroid.service.interfaces.ResponseListener;
 import com.yl.wanandroid.view.home.HomeView;
-import com.youth.banner.Banner;
 
 import java.util.List;
 
 public class HomePresenter extends BasePresenter<HomeView> {
     private HomeModel homeModel;
 
-    public HomePresenter(HomeModel homeModel) {
-        this.homeModel = homeModel;
+    public HomePresenter() {
+        this.homeModel = new HomeModel();
     }
 
     public void getBanners() {

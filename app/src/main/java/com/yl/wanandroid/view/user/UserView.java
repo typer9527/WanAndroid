@@ -4,4 +4,6 @@ import com.yl.wanandroid.base.BaseView;
 
 public interface UserView extends BaseView {
     void onLoginOrRegisterSucceed();
+
+    void onSignOutSucceed();
 }

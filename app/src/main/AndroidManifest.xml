@@ -43,6 +43,7 @@
             android:theme="@style/AppTheme.FullScreen" />
         <activity android:name=".view.WebActivity" />
         <activity android:name=".view.WebViewActivity" />
+        <activity android:name=".view.user.SettingActivity" />
     </application>
 
 </manifest>
