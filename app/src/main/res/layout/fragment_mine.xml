@@ -26,13 +26,14 @@
         style="@style/SettingItemStyle">
 
         <ImageView
+            android:id="@+id/iv_avatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher_round" />
 
         <TextView
             android:id="@+id/tv_login"
@@ -48,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_chevron_right_gray" />
+            app:srcCompat="@drawable/ic_chevron_right_gray" />
     </LinearLayout>
 
     <View style="@style/DefaultDivideLine" />
@@ -66,7 +67,7 @@
             android:layout_height="24dp"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:src="@drawable/ic_collected" />
+            app:srcCompat="@drawable/ic_collected" />
 
         <TextView
             android:layout_width="0dp"
@@ -82,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_chevron_right_gray" />
+            app:srcCompat="@drawable/ic_chevron_right_gray" />
     </LinearLayout>
 
     <View style="@style/DefaultDivideLine" />
@@ -96,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:src="@drawable/ic_settings" />
+            app:srcCompat="@drawable/ic_settings" />
 
         <TextView
             android:layout_width="0dp"
@@ -112,7 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_chevron_right_gray" />
+            app:srcCompat="@drawable/ic_chevron_right_gray" />
     </LinearLayout>
 
     <View style="@style/DefaultDivideLine" />

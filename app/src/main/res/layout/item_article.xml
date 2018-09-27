@@ -17,7 +17,7 @@
             android:layout_width="120dp"
             android:layout_height="0dp"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_android"
+            app:srcCompat="@drawable/ic_android"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
             android:id="@+id/iv_collect"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_not_collected"
+            app:srcCompat="@drawable/ic_not_collected"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
