@@ -100,6 +100,7 @@ public class LoginActivity extends BaseMvpActivity<UserView, UserPresenter> impl
     @Override
     public void onLoginOrRegisterSucceed() {
         PrefsUtils.setBoolean(this, Constant.KEY_IS_LOGON, true);
+        PrefsUtils.setString(this, Constant.KEY_USER_NAME, etLoginName.getText().toString());
         dismissProgressDialog();
         ToastUtils.showShort(this, getString(R.string.label_login_succeed));
         Intent intent = new Intent(this, MainActivity.class);

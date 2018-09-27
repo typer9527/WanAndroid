@@ -7,4 +7,5 @@ public class Constant {
     public static final String KEY_CATEGORY_ID = "key_category_id";
     public static final String KEY_WEB_URL = "key_web_url";
     public static final String KEY_IS_COLLECTED = "key_is_collected";
+    public static final String KEY_USER_NAME = "key_user_name";
 }

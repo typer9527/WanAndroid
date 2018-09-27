@@ -24,7 +24,6 @@ public class AuthCookies implements CookieJar {
     @SuppressLint("StaticFieldLeak")
     private static final AuthCookies mAuthCookies = new AuthCookies();
     private final HashMap<HttpUrl, List<Cookie>> cookieStore = new HashMap<>();
-    private static final String TAG = "AuthCookies";
     private Context context;
 
     private AuthCookies() {
