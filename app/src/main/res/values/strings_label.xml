@@ -39,4 +39,10 @@
     <string name="label_app_info">%s Version %s</string>
     <string name="label_has_signed_out">已退出当前账号</string>
     <string name="label_on_signing_out">正在退出</string>
+    <string name="label_OK">确认</string>
+    <string name="label_cancel">取消</string>
+    <string name="label_no_cache">暂无缓存</string>
+    <string name="label_confirm_to_clean_cache">确认清理当前%s缓存吗?</string>
+    <string name="label_has_cleaned_cache">缓存已清理</string>
+    <string name="label_confirm_to_sign_out">确认退出当前账号吗?</string>
 </resources>

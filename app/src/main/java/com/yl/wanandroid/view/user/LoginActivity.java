@@ -16,7 +16,6 @@ import com.yl.wanandroid.app.Constant;
 import com.yl.wanandroid.base.BaseMvpActivity;
 import com.yl.wanandroid.presenter.UserPresenter;
 import com.yl.wanandroid.utils.PrefsUtils;
-import com.yl.wanandroid.utils.ToastUtils;
 import com.yl.wanandroid.view.MainActivity;
 
 import butterknife.BindView;
@@ -101,7 +100,7 @@ public class LoginActivity extends BaseMvpActivity<UserView, UserPresenter> impl
         PrefsUtils.setBoolean(this, Constant.KEY_IS_LOGON, true);
         PrefsUtils.setString(this, Constant.KEY_USER_NAME, etLoginName.getText().toString());
         dismissProgressDialog();
-        ToastUtils.showShort(this, getString(R.string.label_login_succeed));
+        showMsg(getString(R.string.label_login_succeed));
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

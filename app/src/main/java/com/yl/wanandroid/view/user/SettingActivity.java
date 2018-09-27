@@ -1,7 +1,10 @@
 package com.yl.wanandroid.view.user;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -12,7 +15,6 @@ import com.yl.wanandroid.base.BaseMvpActivity;
 import com.yl.wanandroid.presenter.UserPresenter;
 import com.yl.wanandroid.utils.AppUtils;
 import com.yl.wanandroid.utils.PrefsUtils;
-import com.yl.wanandroid.utils.ToastUtils;
 import com.yl.wanandroid.view.IntroActivity;
 
 import butterknife.BindView;
@@ -76,7 +78,7 @@ public class SettingActivity extends BaseMvpActivity<UserView, UserPresenter> im
         PrefsUtils.setString(this, Constant.KEY_USER_NAME, null);
         PrefsUtils.setString(this, Constant.KEY_LOCAL_COOKIE, null);
         dismissProgressDialog();
-        ToastUtils.showShort(this, getString(R.string.label_has_signed_out));
+        showMsg(getString(R.string.label_has_signed_out));
         Intent intent = new Intent(this, IntroActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
@@ -86,16 +88,42 @@ public class SettingActivity extends BaseMvpActivity<UserView, UserPresenter> im
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_clean_cache:
+                String cacheSize = AppUtils.getCacheSize(SettingActivity.this);
+                if (TextUtils.isEmpty(cacheSize)) showMsg(getString(R.string.label_no_cache));
+                else
+                    showTipDialog(getString(R.string.label_clean_cache), getString(R.string.label_confirm_to_clean_cache, cacheSize),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    AppUtils.cleanCache(SettingActivity.this);
+                                    showMsg(getString(R.string.label_has_cleaned_cache));
+                                }
+                            });
                 break;
             case R.id.tv_help_and_callback:
+                showMsg("暂未完成的功能");
                 break;
             case R.id.tv_about:
+                showMsg("暂未完成的功能");
                 break;
             case R.id.rl_sign_out:
-                showProgressDialog(getString(R.string.label_on_signing_out));
-                mPresenter.signOut();
+                showTipDialog(getString(R.string.label_sign_out), getString(R.string.label_confirm_to_sign_out),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                showProgressDialog(getString(R.string.label_on_signing_out));
+                                mPresenter.signOut();
+                            }
+                        });
                 break;
             default:
         }
+    }
+
+    public void showTipDialog(String title, String msg, DialogInterface.OnClickListener listener) {
+        AlertDialog.Builder tip = new AlertDialog.Builder(this);
+        tip.setTitle(title).setMessage(msg);
+        tip.setPositiveButton(R.string.label_OK, listener).setNegativeButton(R.string.label_cancel, null);
+        tip.create().show();
     }
 }

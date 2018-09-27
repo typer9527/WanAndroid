@@ -94,5 +94,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         dismissProgressDialog();
         ToastUtils.showShort(this, errorMsg);
     }
+
+    public void showMsg(String msg) {
+        ToastUtils.showShort(this, msg);
+    }
 }
 
