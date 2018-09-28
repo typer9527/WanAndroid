@@ -23,7 +23,7 @@ public abstract class BaseMvpActivity<V extends BaseView, P extends BasePresente
         }
     }
 
-    public abstract P initPresenter();
+    protected abstract P initPresenter();
 
     @Override
     public void onNetError() {

@@ -36,7 +36,7 @@ public class RetrofitFactory {
         });
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         /*
-         * 由于retrofit底层的实现是通过okhttp实现的，所以可以通过okHttp来设置一些连接参数
+         * 由于retrofit底层的实现是通过OKHttp实现的，所以可以通过OKHttp来设置一些连接参数
          * 如超时等
          */
         OkHttpClient.Builder client = new OkHttpClient().newBuilder();

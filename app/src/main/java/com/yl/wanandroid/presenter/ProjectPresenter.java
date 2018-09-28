@@ -11,7 +11,7 @@ import com.yl.wanandroid.view.project.ProjectView;
 import java.util.List;
 
 public class ProjectPresenter extends BasePresenter<ProjectView> {
-    private ProjectModel projectModel;
+    private final ProjectModel projectModel;
 
     public ProjectPresenter() {
         this.projectModel = new ProjectModel();

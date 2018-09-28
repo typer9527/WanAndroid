@@ -50,19 +50,19 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     @LayoutRes
-    public abstract int getLayoutId();
+    protected abstract int getLayoutId();
 
-    public abstract void initView();
+    protected abstract void initView();
 
-    public void initData() {
-
-    }
-
-    public void initListener() {
+    protected void initData() {
 
     }
 
-    public void showProgressDialog(String msg) {
+    protected void initListener() {
+
+    }
+
+    protected void showProgressDialog(String msg) {
         if (mProgressDialog == null) {
             if (TextUtils.isEmpty(msg)) {
                 mProgressDialog = ProgressDialog.show(this, "", getString(R.string.label_loading), true, false);
@@ -74,28 +74,28 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void dismissProgressDialog() {
+    protected void dismissProgressDialog() {
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
         }
     }
 
-    public void showNetError() {
+    protected void showNetError() {
         dismissProgressDialog();
         ToastUtils.showShort(this, getString(R.string.label_net_error));
     }
 
-    public void showTokenInvalid(String errorMsg) {
+    void showTokenInvalid(String errorMsg) {
         dismissProgressDialog();
         ToastUtils.showShort(this, getString(R.string.label_login_expired));
     }
 
-    public void showError(String errorMsg) {
+    void showError(String errorMsg) {
         dismissProgressDialog();
         ToastUtils.showShort(this, errorMsg);
     }
 
-    public void showMsg(String msg) {
+    protected void showMsg(String msg) {
         ToastUtils.showShort(this, msg);
     }
 }

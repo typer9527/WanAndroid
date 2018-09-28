@@ -14,7 +14,6 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.base.BaseMvpFragment;
 import com.yl.wanandroid.base.OnItemClickListener;
-import com.yl.wanandroid.model.HomeModel;
 import com.yl.wanandroid.presenter.HomePresenter;
 import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.BannerData;

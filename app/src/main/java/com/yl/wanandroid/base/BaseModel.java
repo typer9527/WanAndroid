@@ -5,10 +5,10 @@ import com.yl.wanandroid.service.RxService;
 import com.yl.wanandroid.service.interfaces.APIService;
 
 public class BaseModel {
-    protected RxService rxService;
-    protected APIService apiService;
+    protected final RxService rxService;
+    protected final APIService apiService;
 
-    public BaseModel() {
+    protected BaseModel() {
         this.rxService = new RxService();
         this.apiService = RetrofitFactory.getInstance().getApiService();
     }

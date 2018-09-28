@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 class ArticleAdapter extends BaseRVAdapter<ArticleAdapter.ArticleHolder> {
-    private List<Articles.Article> list;
+    private final List<Articles.Article> list;
     private Context mContext;
 
     ArticleAdapter(List<Articles.Article> list) {

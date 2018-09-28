@@ -8,7 +8,7 @@ import com.yl.wanandroid.service.interfaces.ResponseListener;
 import com.yl.wanandroid.view.user.UserView;
 
 public class UserPresenter extends BasePresenter<UserView> {
-    private UserModel model;
+    private final UserModel model;
 
     public UserPresenter() {
         this.model = new UserModel();

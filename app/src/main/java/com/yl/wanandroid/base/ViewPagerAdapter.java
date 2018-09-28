@@ -11,7 +11,7 @@ import java.util.List;
  * ViewPager+Fragment的适配器
  */
 public class ViewPagerAdapter extends FragmentPagerAdapter {
-    private List<Fragment> mBaseFragmentList;
+    private final List<Fragment> mBaseFragmentList;
     private List<String> titles;
 
     public ViewPagerAdapter(FragmentManager fm, List<Fragment> mBaseFragmentList) {

@@ -84,7 +84,7 @@ public class LoginActivity extends BaseMvpActivity<UserView, UserPresenter> impl
                 break;
             case R.id.btn_login:
                 mPresenter.login(etLoginName.getText().toString(), etLoginPsw.getText().toString());
-                showProgressDialog(getString(R.string.label_logining));
+                showProgressDialog(getString(R.string.label_on_login));
                 break;
             default:
         }

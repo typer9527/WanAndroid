@@ -2,8 +2,6 @@ package com.yl.wanandroid.service.dto;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class Articles {

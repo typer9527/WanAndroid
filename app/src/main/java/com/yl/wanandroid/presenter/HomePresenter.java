@@ -11,7 +11,7 @@ import com.yl.wanandroid.view.home.HomeView;
 import java.util.List;
 
 public class HomePresenter extends BasePresenter<HomeView> {
-    private HomeModel homeModel;
+    private final HomeModel homeModel;
 
     public HomePresenter() {
         this.homeModel = new HomeModel();

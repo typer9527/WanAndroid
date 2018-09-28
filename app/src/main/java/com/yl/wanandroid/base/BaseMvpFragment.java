@@ -35,7 +35,7 @@ public abstract class BaseMvpFragment<V extends BaseView, P extends BasePresente
         }
     }
 
-    public abstract P initPresenter();
+    protected abstract P initPresenter();
 
     @Override
     public void onNetError() {

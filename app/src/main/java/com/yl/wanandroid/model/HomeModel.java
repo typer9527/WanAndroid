@@ -1,12 +1,10 @@
 package com.yl.wanandroid.model;
 
 import com.yl.wanandroid.base.BaseModel;
-import com.yl.wanandroid.presenter.HomePresenter;
 import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.BannerData;
 import com.yl.wanandroid.service.interfaces.ErrorListener;
 import com.yl.wanandroid.service.interfaces.ResponseListener;
-import com.youth.banner.Banner;
 
 import java.util.List;
 

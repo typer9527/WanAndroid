@@ -1,7 +1,5 @@
 package com.yl.wanandroid.service.dto;
 
-import java.util.List;
-
 public class ProjectCategory {
 
     /**

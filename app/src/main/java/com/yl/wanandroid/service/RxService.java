@@ -32,13 +32,17 @@ public class RxService {
 
                     @Override
                     public void onNext(HttpResponse<T> response) {
-                        if (response.getErrorCode() == 0) {
-                            listener.onSuccess(response);
-                        } else if (response.getErrorCode() == -1001) {
-                            errorListener.onTokenInvalid(response.getErrorMsg());
-                        } else {
-                            Log.e(TAG, "accept: " + response.getErrorMsg());
-                            errorListener.onError(response.getErrorMsg());
+                        switch (response.getErrorCode()) {
+                            case 0:
+                                listener.onSuccess(response);
+                                break;
+                            case -1001:
+                                errorListener.onTokenInvalid(response.getErrorMsg());
+                                break;
+                            default:
+                                Log.e(TAG, "accept: " + response.getErrorMsg());
+                                errorListener.onError(response.getErrorMsg());
+                                break;
                         }
                     }
 

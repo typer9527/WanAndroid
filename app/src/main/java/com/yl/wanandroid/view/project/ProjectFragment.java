@@ -10,7 +10,6 @@ import android.text.Html;
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.base.ViewPagerAdapter;
 import com.yl.wanandroid.base.BaseMvpFragment;
-import com.yl.wanandroid.model.ProjectModel;
 import com.yl.wanandroid.presenter.ProjectPresenter;
 import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.ProjectCategory;

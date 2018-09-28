@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
  * Fragment基类
  */
 public abstract class BaseFragment extends Fragment {
-    protected ProgressDialog mProgressDialog;
+    private ProgressDialog mProgressDialog;
 
     /**
      * 贴附的activity
@@ -29,7 +29,7 @@ public abstract class BaseFragment extends Fragment {
     /**
      * 根view
      */
-    protected View mRootView;
+    private View mRootView;
     /**
      * 是否对用户可见
      */
