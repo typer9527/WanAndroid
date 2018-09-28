@@ -54,6 +54,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 if (!isLogin) startActivity(new Intent(mActivity, LoginActivity.class));
                 break;
             case R.id.ll_collect:
+                if (isLogin) startActivity(new Intent(mActivity, CollectActivity.class));
+                else showMsg("请先登录");
                 break;
             case R.id.ll_setting:
                 startActivity(new Intent(mActivity, SettingActivity.class));

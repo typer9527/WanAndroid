@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.yl.wanandroid.utils.ToastUtils;
+
 import butterknife.ButterKnife;
 
 
@@ -133,5 +135,9 @@ public abstract class BaseFragment extends Fragment {
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
         }
+    }
+
+    protected void showMsg(String msg) {
+        ToastUtils.showShort(mActivity, msg);
     }
 }

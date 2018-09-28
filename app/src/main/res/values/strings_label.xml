@@ -44,4 +44,6 @@
     <string name="label_confirm_to_clean_cache">确认清理当前%s缓存吗?</string>
     <string name="label_has_cleaned_cache">缓存已清理</string>
     <string name="label_confirm_to_sign_out">确认退出当前账号吗?</string>
+    <string name="label_article">文章</string>
+    <string name="label_website">网站</string>
 </resources>

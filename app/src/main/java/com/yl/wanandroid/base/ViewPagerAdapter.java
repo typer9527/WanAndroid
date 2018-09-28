@@ -19,6 +19,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         this.mBaseFragmentList = mBaseFragmentList;
     }
 
+    // tabLayout+viewPager
     public ViewPagerAdapter(FragmentManager fm, List<Fragment> mBaseFragmentList, List<String> titles) {
         super(fm);
         this.mBaseFragmentList = mBaseFragmentList;
