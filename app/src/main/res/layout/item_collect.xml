@@ -42,6 +42,6 @@
             android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
-            app:srcCompat="@drawable/ic_not_collected" />
+            app:srcCompat="@drawable/selector_iv_collect_blue" />
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

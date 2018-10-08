@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -128,7 +129,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
     }
 
     @Override
-    public void onClick(int position) {
+    public void onClick(View view, int position) {
         Articles.Article article = list.get(position);
         WebActivity.openWebPage(mActivity, article.getLink(), article.isCollect());
     }

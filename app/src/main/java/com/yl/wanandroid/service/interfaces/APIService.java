@@ -49,15 +49,17 @@ public interface APIService {
     @POST("lg/collect/{id}/json")
     Observable<HttpResponse<EmptyData>> collectArticle(@Path("id") int id);
 
-    @POST("lg/uncollect_originId/{id}/json")
-    Observable<HttpResponse<EmptyData>> revokeCollectArticle(@Path("id") int id);
+    @FormUrlEncoded
+    @POST("lg/uncollect/{id}/json")
+    Observable<HttpResponse<EmptyData>> revokeCollectArticle(
+            @Path("id") int id, @Field("originId") int originId);
+
+//    @POST("lg/uncollect_originId/{id}/json")
+//    Observable<HttpResponse<EmptyData>> revokeCollectArticle(@Path("id") int id);
 
 //    @FormUrlEncoded
 //    @POST("lg/collect/add/json")
 //    Observable<HttpResponse<EmptyData>> collectOffSiteArticle(@Field("title") String title,
 //                                                              @Field("author") String author,
 //                                                              @Field("link") String link);
-
-//    @POST("lg/uncollect/{id}/json")
-//    Observable<HttpResponse<EmptyData>> revokeCollectOffSiteArticle(@Path("id") int id);
 }

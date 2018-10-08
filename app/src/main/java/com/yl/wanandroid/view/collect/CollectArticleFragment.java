@@ -4,22 +4,25 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.base.BaseMvpFragment;
+import com.yl.wanandroid.base.OnItemClickListener;
 import com.yl.wanandroid.presenter.CollectPresenter;
 import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.utils.ViewUtils;
+import com.yl.wanandroid.view.WebActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-public class CollectArticleFragment extends BaseMvpFragment<CollectView, CollectPresenter> implements CollectView, OnRefreshLoadMoreListener {
+public class CollectArticleFragment extends BaseMvpFragment<CollectView, CollectPresenter> implements CollectView, OnRefreshLoadMoreListener, OnItemClickListener {
     @BindView(R.id.srl_list)
     SmartRefreshLayout srlList;
     @BindView(R.id.rv_list)
@@ -54,6 +57,7 @@ public class CollectArticleFragment extends BaseMvpFragment<CollectView, Collect
     protected void initData() {
         list = new ArrayList<>();
         adapter = new CollectAdapter(list);
+        adapter.setOnItemClickListener(this);
         rvList.setAdapter(adapter);
         srlList.autoRefresh();
     }
@@ -68,16 +72,6 @@ public class CollectArticleFragment extends BaseMvpFragment<CollectView, Collect
     }
 
     @Override
-    public void onRevokeSucceed() {
-
-    }
-
-    @Override
-    public void onCollectSucceed() {
-
-    }
-
-    @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         mPresenter.getCollectedArticleList(++currentIndex, false);
     }
@@ -86,5 +80,11 @@ public class CollectArticleFragment extends BaseMvpFragment<CollectView, Collect
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         currentIndex = 0;
         mPresenter.getCollectedArticleList(currentIndex, true);
+    }
+
+    @Override
+    public void onClick(View view, int position) {
+        Articles.Article article = list.get(position);
+        WebActivity.openWebPage(mActivity, article.getLink(), view.isSelected());
     }
 }

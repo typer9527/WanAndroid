@@ -81,6 +81,7 @@ public class Articles {
         private String envelopePic;
         private boolean fresh;
         private int id;
+        private int originId;
         private String link;
         private String niceDate;
         private String origin;
@@ -94,6 +95,10 @@ public class Articles {
         private int userId;
         private int visible;
         private int zan;
+
+        public int getOriginId() {
+            return originId;
+        }
 
         public String getApkLink() {
             return apkLink;

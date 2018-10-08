@@ -53,7 +53,7 @@ class ArticleAdapter extends BaseRVAdapter<ArticleAdapter.ArticleHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClick(holder.getAdapterPosition());
+                listener.onClick(v, holder.getAdapterPosition());
             }
         });
     }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -111,7 +112,7 @@ public class ProjectListFragment extends BaseMvpFragment<ProjectView, ProjectPre
     }
 
     @Override
-    public void onClick(int position) {
+    public void onClick(View view, int position) {
         Articles.Article project = list.get(position);
         WebActivity.openWebPage(mActivity, project.getLink(), project.isCollect());
     }

@@ -36,14 +36,4 @@ public class CollectWebsiteFragment extends BaseMvpFragment<CollectView, Collect
     public void showCollectArticles(Articles data, boolean isRefresh) {
 
     }
-
-    @Override
-    public void onRevokeSucceed() {
-
-    }
-
-    @Override
-    public void onCollectSucceed() {
-
-    }
 }

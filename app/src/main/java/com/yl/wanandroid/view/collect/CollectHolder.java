@@ -2,6 +2,7 @@ package com.yl.wanandroid.view.collect;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yl.wanandroid.R;
@@ -14,6 +15,8 @@ class CollectHolder extends RecyclerView.ViewHolder {
     TextView tvTitle;
     @BindView(R.id.tv_des)
     TextView tvDes;
+    @BindView(R.id.iv_collect)
+    ImageView ivCollect;
 
     CollectHolder(View itemView) {
         super(itemView);
