@@ -54,7 +54,7 @@ public class ProjectListFragment extends BaseMvpFragment<ProjectView, ProjectPre
     protected void initView(Bundle arguments) {
         categoryId = arguments.getInt(Constant.KEY_CATEGORY_ID, -1);
         rv_project.setLayoutManager(new LinearLayoutManager(mActivity));
-        ViewUtils.addItemDivider(mActivity, rv_project, ViewUtils.DIVIDER_DEFAULT);
+        ViewUtils.addItemDivider(mActivity, ViewUtils.VERTICAL, rv_project, ViewUtils.DIVIDER_DEFAULT);
     }
 
     @Override
@@ -64,7 +64,6 @@ public class ProjectListFragment extends BaseMvpFragment<ProjectView, ProjectPre
 
     @Override
     protected void initData() {
-        currentIndex = 0;
         list = new ArrayList<>();
         adapter = new ProjectAdapter(list);
         adapter.setOnItemClickListener(this);

@@ -7,6 +7,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.base.BaseMvpFragment;
 import com.yl.wanandroid.presenter.CollectPresenter;
+import com.yl.wanandroid.service.dto.Articles;
 
 import butterknife.BindView;
 
@@ -28,6 +29,21 @@ public class CollectWebsiteFragment extends BaseMvpFragment<CollectView, Collect
 
     @Override
     protected void initView(Bundle arguments) {
+
+    }
+
+    @Override
+    public void showCollectArticles(Articles data, boolean isRefresh) {
+
+    }
+
+    @Override
+    public void onRevokeSucceed() {
+
+    }
+
+    @Override
+    public void onCollectSucceed() {
 
     }
 }

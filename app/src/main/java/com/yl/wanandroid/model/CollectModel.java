@@ -15,7 +15,7 @@ public class CollectModel extends BaseModel {
         rxService.add(apiService.collectArticle(index), listener, errorListener);
     }
 
-    public void revokeCollectArticle(int index, ResponseListener<EmptyData> listener, ErrorListener errorListener) {
-        rxService.add(apiService.revokeCollectArticle(index), listener, errorListener);
+    public void revokeCollectArticle(int id, ResponseListener<EmptyData> listener, ErrorListener errorListener) {
+        rxService.add(apiService.revokeCollectArticle(id), listener, errorListener);
     }
 }

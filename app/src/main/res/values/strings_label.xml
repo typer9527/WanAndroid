@@ -46,4 +46,5 @@
     <string name="label_confirm_to_sign_out">确认退出当前账号吗?</string>
     <string name="label_article">文章</string>
     <string name="label_website">网站</string>
+    <string name="label_author">作者: %s</string>
 </resources>

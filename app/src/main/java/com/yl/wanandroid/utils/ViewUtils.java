@@ -10,13 +10,16 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-
-import com.yl.wanandroid.R;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import java.lang.reflect.Field;
 
 public class ViewUtils {
     private static final String TAG = "ViewUtils";
+    public static final int VERTICAL = LinearLayout.VERTICAL;
+    public static final int HORIZONTAL = LinearLayout.HORIZONTAL;
     public static final int DIVIDER_DEFAULT = -1;
 
     // 利用反射关闭BottomNavigationView的Shift动画
@@ -41,12 +44,12 @@ public class ViewUtils {
     }
 
     // 为RecyclerView添加分割线
-    public static void addItemDivider(Context context, RecyclerView recyclerView, int drawable) {
-        DividerItemDecoration divider = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL);
+    public static void addItemDivider(Context context, int orientation, RecyclerView recyclerView, int drawable) {
+        DividerItemDecoration divider = new DividerItemDecoration(context, orientation);
         if (drawable == DIVIDER_DEFAULT) {
             recyclerView.addItemDecoration(divider);
         } else {
-            Drawable drawableDivider = ContextCompat.getDrawable(context, R.drawable.shape_rv_divider);
+            Drawable drawableDivider = ContextCompat.getDrawable(context, drawable);
             if (drawableDivider != null) {
                 divider.setDrawable(drawableDivider);
                 recyclerView.addItemDecoration(divider);
@@ -54,5 +57,26 @@ public class ViewUtils {
                 Log.e(TAG, "addItemDivider: drawable is null");
             }
         }
+    }
+
+    public static void setViewMargin(View view, int left, int top, int right, int bottom) {
+        if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+            p.setMargins(dip2px(view.getContext(), left), dip2px(view.getContext(), top),
+                    dip2px(view.getContext(), right), dip2px(view.getContext(), bottom));
+            view.requestLayout();
+        } else {
+            Log.e(TAG, "setViewMargin: fail to set margin");
+        }
+    }
+
+    private static int dip2px(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
+
+    public static int px2dip(Context context, float pxValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
     }
 }

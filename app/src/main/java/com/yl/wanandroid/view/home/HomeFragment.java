@@ -57,7 +57,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
         bannerHome.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         bannerHome.setImageLoader(new BannerLoader());
         rvHome.setLayoutManager(new LinearLayoutManager(mActivity));
-        ViewUtils.addItemDivider(mActivity, rvHome, R.drawable.shape_rv_divider);
+        ViewUtils.addItemDivider(mActivity, ViewUtils.VERTICAL, rvHome, R.drawable.shape_rv_divider);
     }
 
     @Override
