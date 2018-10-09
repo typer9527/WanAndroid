@@ -27,7 +27,7 @@ public class CollectArticleFragment extends BaseMvpFragment<CollectView, Collect
     SmartRefreshLayout srlList;
     @BindView(R.id.rv_list)
     RecyclerView rvList;
-    private int currentIndex;
+    private int totalPage, currentIndex;
     private List<Articles.Article> list;
     private CollectAdapter adapter;
 
@@ -66,6 +66,7 @@ public class CollectArticleFragment extends BaseMvpFragment<CollectView, Collect
     public void showCollectArticles(Articles data, boolean isRefresh) {
         srlList.finishRefresh();
         srlList.finishLoadMore();
+        totalPage = data.getPageCount();
         if (isRefresh) list.clear();
         list.addAll(data.getArticles());
         adapter.notifyDataSetChanged();
@@ -73,7 +74,12 @@ public class CollectArticleFragment extends BaseMvpFragment<CollectView, Collect
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mPresenter.getCollectedArticleList(++currentIndex, false);
+        if (++currentIndex < totalPage)
+            mPresenter.getCollectedArticleList(currentIndex, false);
+        else {
+            srlList.finishLoadMore();
+            srlList.setNoMoreData(true);
+        }
     }
 
     @Override

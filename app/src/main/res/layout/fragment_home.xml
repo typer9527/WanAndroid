@@ -41,9 +41,11 @@
         android:layout_height="match_parent"
         android:layout_marginTop="5dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:srlEnableAutoLoadMore="false"
+        app:srlEnableLoadMoreWhenContentNotFull="false"
         app:srlEnablePreviewInEditMode="true">
 
-        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+        <com.scwang.smartrefresh.header.MaterialHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

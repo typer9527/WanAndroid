@@ -26,10 +26,10 @@ import butterknife.BindView;
 
 public class ProjectListFragment extends BaseMvpFragment<ProjectView, ProjectPresenter> implements ProjectView, OnRefreshLoadMoreListener, OnItemClickListener {
     @BindView(R.id.srl_list)
-    SmartRefreshLayout srl_project;
+    SmartRefreshLayout srlProject;
     @BindView(R.id.rv_list)
-    RecyclerView rv_project;
-    private int currentIndex, categoryId;
+    RecyclerView rvProject;
+    private int totalPage, currentIndex, categoryId;
     private List<Articles.Article> list;
     private ProjectAdapter adapter;
 
@@ -54,13 +54,13 @@ public class ProjectListFragment extends BaseMvpFragment<ProjectView, ProjectPre
     @Override
     protected void initView(Bundle arguments) {
         categoryId = arguments.getInt(Constant.KEY_CATEGORY_ID, -1);
-        rv_project.setLayoutManager(new LinearLayoutManager(mActivity));
-        ViewUtils.addItemDivider(mActivity, ViewUtils.VERTICAL, rv_project, ViewUtils.DIVIDER_DEFAULT);
+        rvProject.setLayoutManager(new LinearLayoutManager(mActivity));
+        ViewUtils.addItemDivider(mActivity, ViewUtils.VERTICAL, rvProject, ViewUtils.DIVIDER_DEFAULT);
     }
 
     @Override
     protected void initListener() {
-        srl_project.setOnRefreshLoadMoreListener(this);
+        srlProject.setOnRefreshLoadMoreListener(this);
     }
 
     @Override
@@ -68,13 +68,18 @@ public class ProjectListFragment extends BaseMvpFragment<ProjectView, ProjectPre
         list = new ArrayList<>();
         adapter = new ProjectAdapter(list);
         adapter.setOnItemClickListener(this);
-        rv_project.setAdapter(adapter);
-        srl_project.autoRefresh();
+        rvProject.setAdapter(adapter);
+        srlProject.autoRefresh();
     }
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mPresenter.getProjectList(++currentIndex, categoryId, false);
+        if (++currentIndex <= totalPage)
+            mPresenter.getProjectList(currentIndex, categoryId, false);
+        else {
+            srlProject.finishLoadMore();
+            srlProject.setNoMoreData(true);
+        }
     }
 
     @Override
@@ -86,15 +91,15 @@ public class ProjectListFragment extends BaseMvpFragment<ProjectView, ProjectPre
     @Override
     public void onNetError() {
         super.onNetError();
-        srl_project.finishRefresh();
-        srl_project.finishLoadMore();
+        srlProject.finishRefresh();
+        srlProject.finishLoadMore();
     }
 
     @Override
     public void onError(String errorMsg) {
         super.onError(errorMsg);
-        srl_project.finishRefresh();
-        srl_project.finishLoadMore();
+        srlProject.finishRefresh();
+        srlProject.finishLoadMore();
     }
 
     @Override
@@ -104,8 +109,9 @@ public class ProjectListFragment extends BaseMvpFragment<ProjectView, ProjectPre
 
     @Override
     public void showProjectList(Articles data, boolean isRefresh) {
-        srl_project.finishRefresh();
-        srl_project.finishLoadMore();
+        srlProject.finishRefresh();
+        srlProject.finishLoadMore();
+        totalPage = data.getPageCount();
         if (isRefresh) list.clear();
         list.addAll(data.getArticles());
         adapter.notifyDataSetChanged();

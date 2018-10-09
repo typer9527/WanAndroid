@@ -38,7 +38,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
     SmartRefreshLayout srlHome;
     @BindView(R.id.rv_home)
     RecyclerView rvHome;
-    private int currentIndex;
+    private int totalPage, currentIndex;
     private ArrayList<Articles.Article> list;
     private List<BannerData> banners;
     private ArticleAdapter adapter;
@@ -84,6 +84,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
     public void showArticleList(Articles articles, boolean isRefresh) {
         srlHome.finishRefresh();
         srlHome.finishLoadMore();
+        totalPage = articles.getPageCount();
         if (isRefresh) list.clear();
         list.addAll(articles.getArticles());
         adapter.notifyDataSetChanged();
@@ -104,7 +105,12 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        mPresenter.getArticleList(++currentIndex, false);
+        if (++currentIndex < totalPage)
+            mPresenter.getArticleList(currentIndex, false);
+        else {
+            srlHome.finishLoadMore();
+            srlHome.setNoMoreData(true);
+        }
     }
 
     @Override
