@@ -15,6 +15,7 @@ import android.webkit.WebViewClient;
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.app.Constant;
 import com.yl.wanandroid.base.BaseActivity;
+import com.yl.wanandroid.view.collect.CollectFunction;
 
 import butterknife.BindView;
 
@@ -27,10 +28,12 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
     @BindView(R.id.srl_web)
     SwipeRefreshLayout srlWeb;
 
-    public static void openWebPage(Activity activity, String url, boolean isCollected) {
+    public static void openWebPage(Activity activity, String url, boolean isCollected, int originId, int id) {
         Intent intent = new Intent(activity, WebActivity.class);
         intent.putExtra(Constant.KEY_WEB_URL, url);
         intent.putExtra(Constant.KEY_IS_COLLECTED, isCollected);
+        intent.putExtra(Constant.KEY_ORIGIN_ID, originId);
+        intent.putExtra(Constant.KEY_ID, id);
         activity.startActivity(intent);
     }
 
@@ -44,9 +47,9 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
     public void initView() {
         tbWeb.inflateMenu(R.menu.menu_toolbar_web);
         srlWeb.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
-        boolean isCollected = getIntent().getBooleanExtra(Constant.KEY_IS_COLLECTED, false);
-        if (isCollected)
-            tbWeb.getMenu().findItem(R.id.item_collect).setIcon(R.drawable.ic_collected_white);
+        MenuItem item = tbWeb.getMenu().findItem(R.id.item_collect);
+        item.setChecked(getIntent().getBooleanExtra(Constant.KEY_IS_COLLECTED, false));
+        if (item.isChecked()) item.setIcon(R.drawable.ic_collected_white);
         wvWeb.getSettings().setJavaScriptEnabled(true);
         wvWeb.setOnLongClickListener(this);
         wvWeb.setWebViewClient(new WebViewClient() {
@@ -107,7 +110,7 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_collect:
-                //item.setIcon(R.drawable.ic_collected_white);
+                CollectFunction.newInstance().handleArticleCollect(this, item, getIntent());
                 return true;
             case R.id.item_share:
                 return true;

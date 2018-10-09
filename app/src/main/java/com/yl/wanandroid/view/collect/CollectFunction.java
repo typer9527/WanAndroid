@@ -1,9 +1,12 @@
 package com.yl.wanandroid.view.collect;
 
 import android.content.Context;
+import android.content.Intent;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.yl.wanandroid.R;
+import com.yl.wanandroid.app.Constant;
 import com.yl.wanandroid.model.CollectModel;
 import com.yl.wanandroid.service.HttpResponse;
 import com.yl.wanandroid.service.dto.Articles;
@@ -16,6 +19,8 @@ public class CollectFunction implements ErrorListener, ResponseListener<EmptyDat
     private Context mContext;
     private ImageView ivCollect;
     private final CollectModel model;
+    private MenuItem item;
+    private boolean isCollected;
 
     private CollectFunction() {
         model = new CollectModel();
@@ -25,14 +30,32 @@ public class CollectFunction implements ErrorListener, ResponseListener<EmptyDat
         return new CollectFunction();
     }
 
-    public void handleCollectList(ImageView ivCollect, Articles.Article article) {
+    public void handleArticleCollect(ImageView ivCollect, Articles.Article article) {
         this.ivCollect = ivCollect;
+        isCollected = ivCollect.isSelected();
         mContext = ivCollect.getContext();
-        if (ivCollect.isSelected()) {
-            model.revokeCollectArticle(article.getId(), article.getOriginId(), this, this);
+        collectOrRevoke(article.getOriginId(), article.getId());
+
+    }
+
+    private void collectOrRevoke(int originId, int id) {
+        if (isCollected) {
+            if (originId == 0) {
+                model.revokeListArticle(id, this, this);
+            } else {
+                model.revokeCollectArticle(id, originId, this, this);
+            }
         } else {
-            model.collectArticle(article.getOriginId(), this, this);
+            model.collectArticle(originId == 0 ? id : originId, this, this);
         }
+    }
+
+    public void handleArticleCollect(Context context, MenuItem item, Intent intent) {
+        this.item = item;
+        this.isCollected = item.isChecked();
+        mContext = context;
+        collectOrRevoke(intent.getIntExtra(Constant.KEY_ORIGIN_ID, 0),
+                intent.getIntExtra(Constant.KEY_ID, 0));
     }
 
     private void showMsg(String msg) {
@@ -56,6 +79,11 @@ public class CollectFunction implements ErrorListener, ResponseListener<EmptyDat
 
     @Override
     public void onSuccess(HttpResponse<EmptyData> response) {
-        ivCollect.setSelected(!ivCollect.isSelected());
+        if (ivCollect != null)
+            ivCollect.setSelected(!ivCollect.isSelected());
+        if (item != null) {
+            item.setChecked(!item.isChecked());
+            item.setIcon(item.isChecked() ? R.drawable.ic_collected_white : R.drawable.ic_not_collected_white);
+        }
     }
 }

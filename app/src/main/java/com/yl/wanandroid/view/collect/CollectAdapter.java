@@ -43,7 +43,7 @@ public class CollectAdapter extends BaseRVAdapter<CollectHolder> {
         holder.ivCollect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CollectFunction.newInstance().handleCollectList(holder.ivCollect, article);
+                CollectFunction.newInstance().handleArticleCollect(holder.ivCollect, article);
             }
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {

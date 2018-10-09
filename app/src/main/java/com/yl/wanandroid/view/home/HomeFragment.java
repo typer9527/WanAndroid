@@ -131,7 +131,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
     @Override
     public void onClick(View view, int position) {
         Articles.Article article = list.get(position);
-        WebActivity.openWebPage(mActivity, article.getLink(), article.isCollect());
+        WebActivity.openWebPage(mActivity, article.getLink(), view.isSelected(), article.getOriginId(), article.getId());
     }
 
     @Override

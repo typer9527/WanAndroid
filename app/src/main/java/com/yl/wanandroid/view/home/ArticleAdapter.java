@@ -16,6 +16,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.base.BaseRVAdapter;
 import com.yl.wanandroid.service.dto.Articles;
+import com.yl.wanandroid.view.collect.CollectFunction;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ class ArticleAdapter extends BaseRVAdapter<ArticleAdapter.ArticleHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final ArticleHolder holder, int position) {
-        Articles.Article article = list.get(position);
+        final Articles.Article article = list.get(position);
         RequestOptions options = new RequestOptions()
                 .centerCrop().error(R.drawable.ic_android).placeholder(R.drawable.ic_android);
         if (!TextUtils.isEmpty(article.getEnvelopePic()))
@@ -48,12 +49,17 @@ class ArticleAdapter extends BaseRVAdapter<ArticleAdapter.ArticleHolder> {
         holder.tvTitle.setText(Html.fromHtml(article.getTitle()));
         holder.tvAuthorAndTime.setText(mContext.getString(R.string.label_author_and_time, article.getAuthor(), article.getNiceDate()));
         holder.tvCategory.setText(mContext.getString(R.string.label_mark_category, article.getSuperChapterName(), article.getChapterName()));
-        holder.ivCollect.setImageResource(article.isCollect() ?
-                R.drawable.ic_collected : R.drawable.ic_not_collected);
+        holder.ivCollect.setSelected(article.isCollect());
+        holder.ivCollect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CollectFunction.newInstance().handleArticleCollect(holder.ivCollect, article);
+            }
+        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClick(v, holder.getAdapterPosition());
+                listener.onClick(holder.ivCollect, holder.getAdapterPosition());
             }
         });
     }

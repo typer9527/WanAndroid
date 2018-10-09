@@ -114,6 +114,6 @@ public class ProjectListFragment extends BaseMvpFragment<ProjectView, ProjectPre
     @Override
     public void onClick(View view, int position) {
         Articles.Article project = list.get(position);
-        WebActivity.openWebPage(mActivity, project.getLink(), project.isCollect());
+        WebActivity.openWebPage(mActivity, project.getLink(), project.isCollect(), project.getOriginId(), project.getId());
     }
 }

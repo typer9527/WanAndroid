@@ -85,6 +85,6 @@ public class CollectArticleFragment extends BaseMvpFragment<CollectView, Collect
     @Override
     public void onClick(View view, int position) {
         Articles.Article article = list.get(position);
-        WebActivity.openWebPage(mActivity, article.getLink(), view.isSelected());
+        WebActivity.openWebPage(mActivity, article.getLink(), view.isSelected(), article.getOriginId(), article.getId());
     }
 }

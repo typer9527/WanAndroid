@@ -27,7 +27,7 @@
             android:layout_marginTop="5dp"
             android:ellipsize="end"
             android:gravity="center_vertical"
-            android:minLines="1"
+            android:maxLines="1"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toStartOf="@id/iv_collect"
             app:layout_constraintHorizontal_chainStyle="spread"

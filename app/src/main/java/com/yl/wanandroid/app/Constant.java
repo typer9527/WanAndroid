@@ -8,4 +8,6 @@ public class Constant {
     public static final String KEY_WEB_URL = "key_web_url";
     public static final String KEY_IS_COLLECTED = "key_is_collected";
     public static final String KEY_USER_NAME = "key_user_name";
+    public static final String KEY_ORIGIN_ID = "key_origin_id";
+    public static final String KEY_ID = "KEY_ID";
 }

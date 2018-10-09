@@ -54,8 +54,8 @@ public interface APIService {
     Observable<HttpResponse<EmptyData>> revokeCollectArticle(
             @Path("id") int id, @Field("originId") int originId);
 
-//    @POST("lg/uncollect_originId/{id}/json")
-//    Observable<HttpResponse<EmptyData>> revokeCollectArticle(@Path("id") int id);
+    @POST("lg/uncollect_originId/{id}/json")
+    Observable<HttpResponse<EmptyData>> revokeCollectArticle(@Path("id") int id);
 
 //    @FormUrlEncoded
 //    @POST("lg/collect/add/json")
