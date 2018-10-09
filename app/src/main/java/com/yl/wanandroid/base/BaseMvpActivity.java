@@ -1,12 +1,9 @@
 package com.yl.wanandroid.base;
 
-import android.util.Log;
-
 /**
  * MVP模式-BaseMvpActivity
  */
 public abstract class BaseMvpActivity<V extends BaseView, P extends BasePresenter<V>> extends BaseActivity implements BaseView {
-    private static final String TAG = "BaseMvpActivity";
     protected P mPresenter;
 
     @Override
@@ -32,7 +29,6 @@ public abstract class BaseMvpActivity<V extends BaseView, P extends BasePresente
 
     @Override
     public void onTokenInvalid(String errorMsg) {
-        Log.e(TAG, "onTokenInvalid: " + errorMsg);
         showTokenInvalid(errorMsg);
     }
 

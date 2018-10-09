@@ -1,15 +1,20 @@
 package com.yl.wanandroid.base;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.yl.wanandroid.R;
+import com.yl.wanandroid.app.Constant;
+import com.yl.wanandroid.utils.PrefsUtils;
 import com.yl.wanandroid.utils.ToastUtils;
+import com.yl.wanandroid.view.user.LoginActivity;
 
 import butterknife.ButterKnife;
 
@@ -17,6 +22,7 @@ import butterknife.ButterKnife;
  * Activity基类
  */
 public abstract class BaseActivity extends AppCompatActivity {
+    private static final String TAG = "BaseActivity";
     private ProgressDialog mProgressDialog;
 
     @Override
@@ -86,8 +92,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     void showTokenInvalid(String errorMsg) {
+        Log.e(TAG, "onTokenInvalid: " + errorMsg);
         dismissProgressDialog();
-        ToastUtils.showShort(this, getString(R.string.label_login_expired));
+        if (TextUtils.isEmpty(PrefsUtils.getString(this, Constant.KEY_LOCAL_COOKIE))) {
+            showMsg(this.getString(R.string.label_login_first));
+        } else {
+            showMsg(this.getString(R.string.label_login_expired));
+        }
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
     void showError(String errorMsg) {

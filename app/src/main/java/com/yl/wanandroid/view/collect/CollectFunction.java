@@ -2,6 +2,7 @@ package com.yl.wanandroid.view.collect;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
@@ -13,7 +14,9 @@ import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.EmptyData;
 import com.yl.wanandroid.service.interfaces.ErrorListener;
 import com.yl.wanandroid.service.interfaces.ResponseListener;
+import com.yl.wanandroid.utils.PrefsUtils;
 import com.yl.wanandroid.utils.ToastUtils;
+import com.yl.wanandroid.view.user.LoginActivity;
 
 public class CollectFunction implements ErrorListener, ResponseListener<EmptyData> {
     private Context mContext;
@@ -69,7 +72,12 @@ public class CollectFunction implements ErrorListener, ResponseListener<EmptyDat
 
     @Override
     public void onTokenInvalid(String errorMsg) {
-        showMsg(mContext.getString(R.string.label_login_expired));
+        if (TextUtils.isEmpty(PrefsUtils.getString(mContext, Constant.KEY_LOCAL_COOKIE))) {
+            showMsg(mContext.getString(R.string.label_login_first));
+        } else {
+            showMsg(mContext.getString(R.string.label_login_expired));
+        }
+        mContext.startActivity(new Intent(mContext, LoginActivity.class));
     }
 
     @Override
