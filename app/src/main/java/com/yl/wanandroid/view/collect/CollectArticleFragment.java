@@ -43,8 +43,8 @@ public class CollectArticleFragment extends BaseMvpFragment<CollectView, Collect
 
     @Override
     protected void initView(Bundle arguments) {
-        ViewUtils.setViewMargin(rvList, 10, 0, 0, 0);
         rvList.setLayoutManager(new StaggeredGridLayoutManager(2, RecyclerView.VERTICAL));
+        ViewUtils.addItemDivider(mActivity, ViewUtils.VERTICAL, rvList, R.drawable.shape_rv_divider);
         ViewUtils.addItemDivider(mActivity, ViewUtils.HORIZONTAL, rvList, R.drawable.shape_rv_horizontal_divider);
     }
 
@@ -77,8 +77,8 @@ public class CollectArticleFragment extends BaseMvpFragment<CollectView, Collect
         if (++currentIndex < totalPage)
             mPresenter.getCollectedArticleList(currentIndex, false);
         else {
-            srlList.finishLoadMore();
-            srlList.setNoMoreData(true);
+            showMsg(getString(R.string.label_no_more_data));
+            srlList.finishLoadMore(0, true, true);
         }
     }
 

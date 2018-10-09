@@ -108,8 +108,8 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
         if (++currentIndex < totalPage)
             mPresenter.getArticleList(currentIndex, false);
         else {
-            srlHome.finishLoadMore();
-            srlHome.setNoMoreData(true);
+            showMsg(getString(R.string.label_no_more_data));
+            srlHome.finishLoadMore(0, true, true);
         }
     }
 

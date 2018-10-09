@@ -77,14 +77,14 @@ public class ProjectListFragment extends BaseMvpFragment<ProjectView, ProjectPre
         if (++currentIndex <= totalPage)
             mPresenter.getProjectList(currentIndex, categoryId, false);
         else {
-            srlProject.finishLoadMore();
-            srlProject.setNoMoreData(true);
+            showMsg(getString(R.string.label_no_more_data));
+            srlProject.finishLoadMore(0, true, true);
         }
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        currentIndex = 0;
+        currentIndex = 1;
         mPresenter.getProjectList(currentIndex, categoryId, true);
     }
 

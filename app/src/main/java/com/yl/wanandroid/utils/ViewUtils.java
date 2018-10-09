@@ -51,6 +51,11 @@ public class ViewUtils {
         } else {
             Drawable drawableDivider = ContextCompat.getDrawable(context, drawable);
             if (drawableDivider != null) {
+                // 为首个item设置上边的padding和左边的margin
+                if (orientation == VERTICAL)
+                    recyclerView.setPadding(0, drawableDivider.getIntrinsicHeight() / 2, 0, 0);
+                if (orientation == HORIZONTAL)
+                    setMarginLeft(recyclerView, px2dip(context, drawableDivider.getIntrinsicWidth()));
                 divider.setDrawable(drawableDivider);
                 recyclerView.addItemDecoration(divider);
             } else {
@@ -59,14 +64,14 @@ public class ViewUtils {
         }
     }
 
-    public static void setViewMargin(View view, int left, int top, int right, int bottom) {
+    private static void setMarginLeft(View view, int left) {
         if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
             ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-            p.setMargins(dip2px(view.getContext(), left), dip2px(view.getContext(), top),
-                    dip2px(view.getContext(), right), dip2px(view.getContext(), bottom));
+            p.setMargins(dip2px(view.getContext(), left), dip2px(view.getContext(), 0),
+                    dip2px(view.getContext(), 0), dip2px(view.getContext(), 0));
             view.requestLayout();
         } else {
-            Log.e(TAG, "setViewMargin: fail to set margin");
+            Log.e(TAG, "setMarginLeft: fail to set margin");
         }
     }
 
@@ -75,7 +80,7 @@ public class ViewUtils {
         return (int) (dpValue * scale + 0.5f);
     }
 
-    public static int px2dip(Context context, float pxValue) {
+    private static int px2dip(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
