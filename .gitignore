@@ -54,6 +54,8 @@ fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
 
+# IntelliJ
+*.iml
 .idea/
 
 # External native build folder generated in Android Studio 2.2 and later
