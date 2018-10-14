@@ -61,7 +61,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             case R.id.item_classify:
                 vpMain.setCurrentItem(1, false);
                 return true;
-            case R.id.item_todo:
+            case R.id.item_system:
                 vpMain.setCurrentItem(2, false);
                 return true;
             case R.id.item_mine:
