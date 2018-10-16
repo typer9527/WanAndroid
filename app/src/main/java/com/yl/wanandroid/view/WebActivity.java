@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -123,9 +125,21 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
         wvWeb.reload();
     }
 
+    private static final String TAG = "WebActivity";
+
     @Override
     public boolean onLongClick(View v) {
-        // TODO: 2018/9/21 图片识别与保存
+        WebView.HitTestResult result = ((WebView) v).getHitTestResult();
+        Log.e(TAG, "onLongClick: " + result.getType());
+        if (result.getType() == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE ||
+                result.getType() == WebView.HitTestResult.IMAGE_TYPE) {
+            Log.e(TAG, "onLongClick: " + result.getExtra());
+            if (TextUtils.isEmpty(result.getExtra())) {
+                showMsg("获取图片失败");
+            } else {
+                WebViewActivity.openExternalUrl(this, result.getExtra());
+            }
+        }
         return false;
     }
 }
