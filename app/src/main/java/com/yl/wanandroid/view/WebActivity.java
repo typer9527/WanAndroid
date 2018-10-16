@@ -4,15 +4,18 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.app.Constant;
@@ -29,6 +32,8 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
     WebView wvWeb;
     @BindView(R.id.srl_web)
     SwipeRefreshLayout srlWeb;
+    private BottomSheetDialog dialog;
+    private String picUrl;
 
     public static void openWebPage(Activity activity, String url, boolean isCollected, int originId, int id) {
         Intent intent = new Intent(activity, WebActivity.class);
@@ -88,6 +93,41 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
                 tbWeb.setTitle(title);
             }
         });
+        initBottomDialog();
+    }
+
+    private void initBottomDialog() {
+        String[] items = new String[]{"打开图片链接", "保存图片", "识别图中二维码"};
+        dialog = new BottomSheetDialog(this);
+        View inflate = View.inflate(this, R.layout.dialog_bottom_sheet_web, null);
+        ListView lvItem = inflate.findViewById(R.id.lv_item);
+        lvItem.setAdapter(new ArrayAdapter<>(this, R.layout.item_bottom_dialog, items));
+        lvItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        WebViewActivity.openExternalUrl(WebActivity.this, picUrl);
+                        break;
+                    case 1:
+                        showMsg("未完成的功能");
+                        break;
+                    case 2:
+                        showMsg("未完成的功能");
+                        break;
+                    default:
+                        break;
+                }
+                dialog.dismiss();
+            }
+        });
+        inflate.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.setContentView(inflate);
     }
 
     @Override
@@ -125,19 +165,16 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
         wvWeb.reload();
     }
 
-    private static final String TAG = "WebActivity";
-
     @Override
     public boolean onLongClick(View v) {
         WebView.HitTestResult result = ((WebView) v).getHitTestResult();
-        Log.e(TAG, "onLongClick: " + result.getType());
         if (result.getType() == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE ||
                 result.getType() == WebView.HitTestResult.IMAGE_TYPE) {
-            Log.e(TAG, "onLongClick: " + result.getExtra());
             if (TextUtils.isEmpty(result.getExtra())) {
                 showMsg("获取图片失败");
             } else {
-                WebViewActivity.openExternalUrl(this, result.getExtra());
+                picUrl = result.getExtra();
+                dialog.show();
             }
         }
         return false;
