@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
@@ -17,10 +19,25 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.ChecksumException;
+import com.google.zxing.FormatException;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.RGBLuminanceSource;
+import com.google.zxing.Result;
+import com.google.zxing.common.HybridBinarizer;
+import com.google.zxing.qrcode.QRCodeReader;
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.app.Constant;
 import com.yl.wanandroid.base.BaseActivity;
 import com.yl.wanandroid.view.collect.CollectFunction;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -34,6 +51,9 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
     SwipeRefreshLayout srlWeb;
     private BottomSheetDialog dialog;
     private String picUrl;
+    private ArrayAdapter<String> dialogItemsAdapter;
+    private String qrCodeUrl;
+    private List<String> itemList;
 
     public static void openWebPage(Activity activity, String url, boolean isCollected, int originId, int id) {
         Intent intent = new Intent(activity, WebActivity.class);
@@ -97,11 +117,12 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
     }
 
     private void initBottomDialog() {
-        String[] items = new String[]{"打开图片链接", "保存图片", "识别图中二维码"};
+        itemList = new ArrayList<>();
         dialog = new BottomSheetDialog(this);
         View inflate = View.inflate(this, R.layout.dialog_bottom_sheet_web, null);
         ListView lvItem = inflate.findViewById(R.id.lv_item);
-        lvItem.setAdapter(new ArrayAdapter<>(this, R.layout.item_bottom_dialog, items));
+        dialogItemsAdapter = new ArrayAdapter<>(this, R.layout.item_bottom_dialog, itemList);
+        lvItem.setAdapter(dialogItemsAdapter);
         lvItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -113,7 +134,7 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
                         showMsg("未完成的功能");
                         break;
                     case 2:
-                        showMsg("未完成的功能");
+                        WebViewActivity.openExternalUrl(WebActivity.this, qrCodeUrl);
                         break;
                     default:
                         break;
@@ -174,9 +195,46 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
                 showMsg("获取图片失败");
             } else {
                 picUrl = result.getExtra();
-                dialog.show();
+                // 先识别，再显示BottomSheetDialog
+                getAndAnalyzeImg(picUrl);
             }
         }
         return false;
+    }
+
+    private void getAndAnalyzeImg(String picUrl) {
+        Glide.with(WebActivity.this).asBitmap().load(picUrl).into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                int width = resource.getWidth();
+                int height = resource.getHeight();
+                int[] pixels = new int[width * height];
+                resource.getPixels(pixels, 0, width, 0, 0, width, height);
+                RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
+                BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+                QRCodeReader reader = new QRCodeReader();
+                Result result = null;
+                try {
+                    result = reader.decode(bitmap);
+                } catch (NotFoundException e) {
+                    e.printStackTrace();
+                } catch (ChecksumException e) {
+                    e.printStackTrace();
+                } catch (FormatException e) {
+                    e.printStackTrace();
+                }
+                String[] items = new String[]{"打开图片链接", "保存图片", "识别图中二维码"};
+                itemList.clear();
+                itemList.addAll(Arrays.asList(items));
+                if (result == null) {
+                    itemList.remove(itemList.size() - 1);
+                    dialogItemsAdapter.notifyDataSetChanged();
+                } else {
+                    qrCodeUrl = result.getText();
+                }
+                dialogItemsAdapter.notifyDataSetChanged();
+                dialog.show();
+            }
+        });
     }
 }
