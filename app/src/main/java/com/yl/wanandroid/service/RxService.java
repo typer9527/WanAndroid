@@ -1,5 +1,6 @@
 package com.yl.wanandroid.service;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.yl.wanandroid.service.interfaces.APIService;
@@ -32,16 +33,18 @@ public class RxService {
 
                     @Override
                     public void onNext(HttpResponse<T> response) {
+                        String errorMsg = response.getErrorMsg();
                         switch (response.getErrorCode()) {
                             case 0:
                                 listener.onSuccess(response);
                                 break;
                             case -1001:
-                                errorListener.onTokenInvalid(response.getErrorMsg());
+                                errorListener.onTokenInvalid(errorMsg);
                                 break;
                             default:
-                                Log.e(TAG, "accept: " + response.getErrorMsg());
-                                errorListener.onError(response.getErrorMsg());
+                                if (TextUtils.isEmpty(errorMsg)) errorMsg = "服务器异常，请稍后再试";
+                                Log.e(TAG, "accept: " + errorMsg);
+                                errorListener.onError(errorMsg);
                                 break;
                         }
                     }

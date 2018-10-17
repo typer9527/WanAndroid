@@ -70,6 +70,9 @@ public class WebViewActivity extends AppCompatActivity implements Toolbar.OnMenu
         settings.setJavaScriptEnabled(true);
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
+        settings.setSupportZoom(true);
+        settings.setBuiltInZoomControls(true);
+        settings.setDisplayZoomControls(false);
         webView.setWebViewClient(new WebViewClient() {
             private boolean isFailed;
 
