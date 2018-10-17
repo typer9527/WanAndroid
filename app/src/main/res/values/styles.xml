@@ -49,4 +49,11 @@
     <style name="TabTextSize">
         <item name="android:textSize">@dimen/text_size_medium</item>
     </style>
+
+    <style name="BottomDialogTextStyle">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:padding">10dp</item>
+    </style>
 </resources>
