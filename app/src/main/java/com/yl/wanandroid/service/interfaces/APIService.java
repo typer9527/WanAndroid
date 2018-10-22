@@ -5,6 +5,7 @@ import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.BannerData;
 import com.yl.wanandroid.service.dto.EmptyData;
 import com.yl.wanandroid.service.dto.ProjectCategory;
+import com.yl.wanandroid.service.dto.Website;
 
 import java.util.List;
 
@@ -63,5 +64,5 @@ public interface APIService {
 //                                                              @Field("author") String author,
 //                                                              @Field("link") String link);
     @GET("lg/collect/usertools/json")
-    Observable<HttpResponse<List<Articles.Article>>> getCollectedWebsites();
+    Observable<HttpResponse<List<Website>>> getCollectedWebsites();
 }

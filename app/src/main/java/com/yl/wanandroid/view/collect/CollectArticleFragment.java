@@ -15,6 +15,7 @@ import com.yl.wanandroid.base.OnItemClickListener;
 import com.yl.wanandroid.presenter.CollectPresenter;
 import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.CollectItem;
+import com.yl.wanandroid.service.dto.Website;
 import com.yl.wanandroid.utils.ViewUtils;
 import com.yl.wanandroid.view.WebActivity;
 
@@ -74,7 +75,7 @@ public class CollectArticleFragment extends BaseMvpFragment<CollectView, Collect
     }
 
     @Override
-    public void showCollectWebsites(List<Articles.Article> list) {
+    public void showCollectWebsites(List<Website> list) {
 
     }
 
