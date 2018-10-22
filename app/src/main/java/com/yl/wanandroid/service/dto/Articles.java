@@ -70,7 +70,7 @@ public class Articles {
         this.total = total;
     }
 
-    public class Article {
+    public class Article implements CollectItem {
         private String apkLink;
         private String author;
         private int chapterId;
@@ -81,7 +81,7 @@ public class Articles {
         private String envelopePic;
         private boolean fresh;
         private int id;
-        private int originId;
+        private int originId; // 收藏功能使用
         private String link;
         private String niceDate;
         private String origin;
@@ -282,6 +282,31 @@ public class Articles {
 
         public void setZan(int zan) {
             this.zan = zan;
+        }
+
+        @Override
+        public String getItemTitle() {
+            return title;
+        }
+
+        @Override
+        public String getItemDes() {
+            return author;
+        }
+
+        @Override
+        public int getItemId() {
+            return id;
+        }
+
+        @Override
+        public int getItemOriginId() {
+            return originId;
+        }
+
+        @Override
+        public boolean isArticle() {
+            return true;
         }
     }
 

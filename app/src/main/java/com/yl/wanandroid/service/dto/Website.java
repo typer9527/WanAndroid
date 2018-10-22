@@ -1,6 +1,6 @@
 package com.yl.wanandroid.service.dto;
 
-public class Website {
+public class Website implements CollectItem {
 
     private int id;
     private String link;
@@ -28,5 +28,30 @@ public class Website {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String getItemTitle() {
+        return name;
+    }
+
+    @Override
+    public String getItemDes() {
+        return link;
+    }
+
+    @Override
+    public int getItemId() {
+        return id;
+    }
+
+    @Override
+    public int getItemOriginId() {
+        return -1;
+    }
+
+    @Override
+    public boolean isArticle() {
+        return false;
     }
 }

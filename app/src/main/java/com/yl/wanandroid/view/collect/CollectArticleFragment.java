@@ -14,6 +14,7 @@ import com.yl.wanandroid.base.BaseMvpFragment;
 import com.yl.wanandroid.base.OnItemClickListener;
 import com.yl.wanandroid.presenter.CollectPresenter;
 import com.yl.wanandroid.service.dto.Articles;
+import com.yl.wanandroid.service.dto.CollectItem;
 import com.yl.wanandroid.utils.ViewUtils;
 import com.yl.wanandroid.view.WebActivity;
 
@@ -28,7 +29,7 @@ public class CollectArticleFragment extends BaseMvpFragment<CollectView, Collect
     @BindView(R.id.rv_list)
     RecyclerView rvList;
     private int totalPage, currentIndex;
-    private List<Articles.Article> list;
+    private List<CollectItem> list;
     private CollectAdapter adapter;
 
     @Override
@@ -73,6 +74,11 @@ public class CollectArticleFragment extends BaseMvpFragment<CollectView, Collect
     }
 
     @Override
+    public void showCollectWebsites(List<Articles.Article> list) {
+
+    }
+
+    @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         if (++currentIndex < totalPage)
             mPresenter.getCollectedArticleList(currentIndex, false);
@@ -90,7 +96,8 @@ public class CollectArticleFragment extends BaseMvpFragment<CollectView, Collect
 
     @Override
     public void onClick(View view, int position) {
-        Articles.Article article = list.get(position);
-        WebActivity.openWebPage(mActivity, article.getLink(), view.isSelected(), article.getOriginId(), article.getId());
+        CollectItem item = list.get(position);
+        WebActivity.openWebPage(mActivity, item.getLink(), view.isSelected(),
+                item.getItemOriginId(), item.getItemId());
     }
 }

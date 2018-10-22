@@ -10,7 +10,7 @@ import com.yl.wanandroid.R;
 import com.yl.wanandroid.app.Constant;
 import com.yl.wanandroid.model.CollectModel;
 import com.yl.wanandroid.service.HttpResponse;
-import com.yl.wanandroid.service.dto.Articles;
+import com.yl.wanandroid.service.dto.CollectItem;
 import com.yl.wanandroid.service.dto.EmptyData;
 import com.yl.wanandroid.service.interfaces.ErrorListener;
 import com.yl.wanandroid.service.interfaces.ResponseListener;
@@ -33,12 +33,11 @@ public class CollectFunction implements ErrorListener, ResponseListener<EmptyDat
         return new CollectFunction();
     }
 
-    public void handleArticleCollect(ImageView ivCollect, Articles.Article article) {
+    public void handleArticleCollect(ImageView ivCollect, CollectItem item) {
         this.ivCollect = ivCollect;
         isCollected = ivCollect.isSelected();
         mContext = ivCollect.getContext();
-        collectOrRevoke(article.getOriginId(), article.getId());
-
+        collectOrRevoke(item.getItemOriginId(), item.getItemId());
     }
 
     private void collectOrRevoke(int originId, int id) {

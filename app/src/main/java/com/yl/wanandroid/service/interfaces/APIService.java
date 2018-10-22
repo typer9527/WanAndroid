@@ -62,4 +62,6 @@ public interface APIService {
 //    Observable<HttpResponse<EmptyData>> collectOffSiteArticle(@Field("title") String title,
 //                                                              @Field("author") String author,
 //                                                              @Field("link") String link);
+    @GET("lg/collect/usertools/json")
+    Observable<HttpResponse<List<Articles.Article>>> getCollectedWebsites();
 }
