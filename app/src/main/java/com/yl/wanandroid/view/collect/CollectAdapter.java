@@ -10,15 +10,15 @@ import android.view.ViewGroup;
 import com.yl.wanandroid.R;
 import com.yl.wanandroid.base.BaseRVAdapter;
 import com.yl.wanandroid.base.OnItemClickListener;
-import com.yl.wanandroid.service.dto.Articles;
+import com.yl.wanandroid.service.dto.CollectItem;
 
 import java.util.List;
 
 public class CollectAdapter extends BaseRVAdapter<CollectHolder> {
-    private List<Articles.Article> list;
+    private List<CollectItem> list;
     private Context mContext;
 
-    CollectAdapter(List<Articles.Article> list) {
+    CollectAdapter(List<CollectItem> list) {
         this.list = list;
     }
 
@@ -36,14 +36,15 @@ public class CollectAdapter extends BaseRVAdapter<CollectHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final CollectHolder holder, int position) {
-        final Articles.Article article = list.get(position);
-        holder.tvTitle.setText(Html.fromHtml(article.getTitle()));
-        holder.tvDes.setText(mContext.getString(R.string.label_author, article.getAuthor()));
+        final CollectItem item = list.get(position);
+        holder.tvTitle.setText(Html.fromHtml(item.getItemTitle()));
+        String des = item.isArticle() ? mContext.getString(R.string.label_author, item.getItemDes()) : item.getItemDes();
+        holder.tvDes.setText(des);
         holder.ivCollect.setSelected(true);
         holder.ivCollect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CollectFunction.newInstance().handleArticleCollect(holder.ivCollect, article);
+                CollectFunction.newInstance().handleArticleCollect(holder.ivCollect, item);
             }
         });
         holder.itemView.setOnClickListener(new View.OnClickListener() {

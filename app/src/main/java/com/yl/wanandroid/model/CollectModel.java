@@ -3,8 +3,11 @@ package com.yl.wanandroid.model;
 import com.yl.wanandroid.base.BaseModel;
 import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.EmptyData;
+import com.yl.wanandroid.service.dto.Website;
 import com.yl.wanandroid.service.interfaces.ErrorListener;
 import com.yl.wanandroid.service.interfaces.ResponseListener;
+
+import java.util.List;
 
 public class CollectModel extends BaseModel {
     public void getCollectedArticles(int index, ResponseListener<Articles> listener, ErrorListener errorListener) {
@@ -21,5 +24,9 @@ public class CollectModel extends BaseModel {
 
     public void revokeListArticle(int id, ResponseListener<EmptyData> listener, ErrorListener errorListener) {
         rxService.add(apiService.revokeCollectArticle(id), listener, errorListener);
+    }
+
+    public void getCollectedWebsites(ResponseListener<List<Website>> listener, ErrorListener errorListener) {
+        rxService.add(apiService.getCollectedWebsites(), listener, errorListener);
     }
 }
