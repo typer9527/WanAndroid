@@ -215,6 +215,7 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
                 QRCodeReader reader = new QRCodeReader();
                 Result result = null;
                 try {
+                    // TODO: 2018/10/24 优化二维码的识别
                     result = reader.decode(bitmap);
                 } catch (NotFoundException e) {
                     e.printStackTrace();
