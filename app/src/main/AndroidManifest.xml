@@ -46,5 +46,4 @@
         <activity android:name=".view.user.SettingActivity" />
         <activity android:name=".view.CollectActivity" />
     </application>
-
 </manifest>
