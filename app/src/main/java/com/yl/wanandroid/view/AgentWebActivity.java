@@ -4,14 +4,17 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -22,7 +25,7 @@ import android.widget.Toast;
 import com.just.agentweb.AgentWeb;
 import com.yl.wanandroid.R;
 
-public class AgentWebActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener {
+public class AgentWebActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener, DownloadListener {
     private static final String KEY_EXTERNAL_URL = "key_external_url";
     private AgentWeb mAgentWeb;
     private Toolbar toolbar;
@@ -65,6 +68,7 @@ public class AgentWebActivity extends AppCompatActivity implements Toolbar.OnMen
                 .useDefaultIndicator(getResources().getColor(R.color.colorGray))
                 .setWebViewClient(webViewClient).setWebChromeClient(chromeClient)
                 .createAgentWeb().ready().go(startUrl);
+        mAgentWeb.getWebCreator().getWebView().setDownloadListener(this);
         WebSettings settings = mAgentWeb.getAgentWebSettings().getWebSettings();
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
@@ -130,5 +134,27 @@ public class AgentWebActivity extends AppCompatActivity implements Toolbar.OnMen
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public void onDownloadStart(final String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+        new AlertDialog.Builder(this)
+                .setCancelable(false)
+                .setTitle("文件下载").setMessage("是否打开浏览器下载链接文件")
+                .setNegativeButton(getString(R.string.label_cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        showToast("已取消下载");
+                        finish();
+                    }
+                })
+                .setPositiveButton(getString(R.string.label_OK), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        startActivity(intent);
+                        finish();
+                    }
+                }).create().show();
     }
 }
