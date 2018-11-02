@@ -192,4 +192,9 @@ public class AgentWebActivity extends AppCompatActivity implements Toolbar.OnMen
                     }
                 }).create().show();
     }
+
+    @Override
+    public void onBackPressed() {
+        if (!mAgentWeb.back()) super.onBackPressed();
+    }
 }
