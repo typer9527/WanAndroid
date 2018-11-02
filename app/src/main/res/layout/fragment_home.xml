@@ -10,6 +10,7 @@
         android:layout_height="180dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/ctl_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="@color/colorPrimary"
@@ -58,4 +59,12 @@
             android:layout_height="match_parent"
             android:background="@color/colorWhite" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_to_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="10dp"
+        app:srcCompat="@drawable/ic_arrow_upward" />
 </android.support.design.widget.CoordinatorLayout>

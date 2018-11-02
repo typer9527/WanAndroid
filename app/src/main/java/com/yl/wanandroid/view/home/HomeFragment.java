@@ -3,8 +3,11 @@ package com.yl.wanandroid.view.home;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -38,6 +41,10 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
     SmartRefreshLayout srlHome;
     @BindView(R.id.rv_home)
     RecyclerView rvHome;
+    @BindView(R.id.fab_to_top)
+    FloatingActionButton fabToTop;
+    @BindView(R.id.ctl_home)
+    CollapsingToolbarLayout ctlHome;
     private int totalPage, currentIndex;
     private ArrayList<Articles.Article> list;
     private List<BannerData> banners;
@@ -65,7 +72,16 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
     protected void initListener() {
         bannerHome.setOnBannerListener(this);
         srlHome.setOnRefreshLoadMoreListener(this);
+        fabToTop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e(TAG, "onClick: ");
+                rvHome.smoothScrollToPosition(0);
+            }
+        });
     }
+
+    private static final String TAG = "HomeFragment";
 
     @Override
     protected void initData() {
