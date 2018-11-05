@@ -48,6 +48,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
     private ArrayList<Articles.Article> list;
     private List<BannerData> banners;
     private ArticleAdapter adapter;
+    private boolean isScroll;
 
     @Override
     public HomePresenter initPresenter() {
@@ -78,9 +79,21 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
                 ablHome.setExpanded(true, true);
             }
         });
-    }
+        rvHome.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                isScroll = newState > 0;
+            }
 
-    private static final String TAG = "HomeFragment";
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (isScroll && dy > 0)
+                    fabToTop.hide();
+                else if (dy < 0)
+                    fabToTop.show();
+            }
+        });
+    }
 
     @Override
     protected void initData() {
