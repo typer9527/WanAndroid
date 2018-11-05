@@ -5,12 +5,11 @@
     android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/abl_main"
+        android:id="@+id/abl_home"
         android:layout_width="match_parent"
         android:layout_height="180dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/ctl_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="@color/colorPrimary"

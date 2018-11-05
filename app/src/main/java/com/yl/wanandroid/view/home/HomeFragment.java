@@ -3,11 +3,10 @@ package com.yl.wanandroid.view.home;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -35,6 +34,8 @@ import java.util.List;
 import butterknife.BindView;
 
 public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> implements HomeView, OnRefreshLoadMoreListener, OnItemClickListener, OnBannerListener {
+    @BindView(R.id.abl_home)
+    AppBarLayout ablHome;
     @BindView(R.id.banner_home)
     Banner bannerHome;
     @BindView(R.id.srl_home)
@@ -43,8 +44,6 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
     RecyclerView rvHome;
     @BindView(R.id.fab_to_top)
     FloatingActionButton fabToTop;
-    @BindView(R.id.ctl_home)
-    CollapsingToolbarLayout ctlHome;
     private int totalPage, currentIndex;
     private ArrayList<Articles.Article> list;
     private List<BannerData> banners;
@@ -75,8 +74,8 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
         fabToTop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG, "onClick: ");
                 rvHome.smoothScrollToPosition(0);
+                ablHome.setExpanded(true, true);
             }
         });
     }
