@@ -6,7 +6,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yl.wanandroid.R;
@@ -28,11 +27,10 @@ public class SettingActivity extends BaseMvpActivity<UserView, UserPresenter> im
     TextView tvHelpAndCallback;
     @BindView(R.id.tv_about)
     TextView tvAbout;
-    @BindView(R.id.rl_sign_out)
-    RelativeLayout rlSignOut;
+    @BindView(R.id.tv_sign_out)
+    TextView tvSignOut;
     @BindView(R.id.tv_app_info)
     TextView tvAppInfo;
-
 
     @Override
     public int getLayoutId() {
@@ -42,7 +40,7 @@ public class SettingActivity extends BaseMvpActivity<UserView, UserPresenter> im
     @Override
     public void initView() {
         if (!PrefsUtils.getBoolean(this, Constant.KEY_IS_LOGON)) {
-            rlSignOut.setVisibility(View.GONE);
+            tvSignOut.setVisibility(View.GONE);
         }
         tvAppInfo.setText(getString(R.string.label_app_info,
                 AppUtils.getName(this), AppUtils.getVersionName(this)));
@@ -59,7 +57,7 @@ public class SettingActivity extends BaseMvpActivity<UserView, UserPresenter> im
         tvCleanCache.setOnClickListener(this);
         tvHelpAndCallback.setOnClickListener(this);
         tvAbout.setOnClickListener(this);
-        rlSignOut.setOnClickListener(this);
+        tvSignOut.setOnClickListener(this);
     }
 
     @Override
@@ -106,7 +104,7 @@ public class SettingActivity extends BaseMvpActivity<UserView, UserPresenter> im
             case R.id.tv_about:
                 showMsg("暂未完成的功能");
                 break;
-            case R.id.rl_sign_out:
+            case R.id.tv_sign_out:
                 showTipDialog(getString(R.string.label_sign_out), getString(R.string.label_confirm_to_sign_out),
                         new DialogInterface.OnClickListener() {
                             @Override

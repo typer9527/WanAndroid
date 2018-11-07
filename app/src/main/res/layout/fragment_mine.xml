@@ -6,13 +6,13 @@
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/abl_main"
+        android:id="@+id/abl_mine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="?actionBarSize"
             app:title="@string/label_mine"
             app:titleTextColor="@color/colorWhite" />
     </android.support.design.widget.AppBarLayout>
@@ -23,16 +23,16 @@
 
     <LinearLayout
         android:id="@+id/ll_user"
-        style="@style/SettingItemStyle">
+        style="@style/MineItemStyle">
 
         <ImageView
             android:id="@+id/iv_avatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:src="@mipmap/ic_launcher_round" />
 
         <TextView
@@ -60,20 +60,20 @@
 
     <LinearLayout
         android:id="@+id/ll_collect"
-        style="@style/SettingItemStyle">
+        style="@style/MineItemStyle">
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             app:srcCompat="@drawable/ic_collected" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:text="@string/label_collect"
             android:textColor="@color/colorBlack"
@@ -90,20 +90,20 @@
 
     <LinearLayout
         android:id="@+id/ll_setting"
-        style="@style/SettingItemStyle">
+        style="@style/MineItemStyle">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             app:srcCompat="@drawable/ic_settings" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:text="@string/label_setting"
             android:textColor="@color/colorBlack"
