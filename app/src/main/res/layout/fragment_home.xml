@@ -65,5 +65,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="10dp"
+        app:layout_behavior=".widget.FabBehavior"
         app:srcCompat="@drawable/ic_arrow_upward" />
 </android.support.design.widget.CoordinatorLayout>
