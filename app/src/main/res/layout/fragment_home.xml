@@ -59,12 +59,5 @@
             android:background="@color/colorWhite" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_to_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="10dp"
-        app:layout_behavior=".widget.FabBehavior"
-        app:srcCompat="@drawable/ic_arrow_upward" />
+    <include layout="@layout/include_fab_for_list" />
 </android.support.design.widget.CoordinatorLayout>
