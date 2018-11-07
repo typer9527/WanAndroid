@@ -14,8 +14,6 @@ import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 
 public class FabBehavior extends CoordinatorLayout.Behavior<FloatingActionButton> {
-    private static final String TAG = "FabBehavior";
-
 
     public FabBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -23,26 +21,27 @@ public class FabBehavior extends CoordinatorLayout.Behavior<FloatingActionButton
 
     @Override
     public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull FloatingActionButton child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
-        //Log.e(TAG, "onStartNestedScroll: ");
-        return axes == ViewCompat.SCROLL_AXIS_VERTICAL ||
-                super.onStartNestedScroll(coordinatorLayout, child, directTargetChild, target, axes, type);
+        return axes == ViewCompat.SCROLL_AXIS_VERTICAL;
     }
 
     @Override
     public void onNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull FloatingActionButton child, @NonNull View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type) {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type);
-        Log.e(TAG, "onNestedScroll dyConsumed : " + dyConsumed);
         if (dyConsumed > 0 && child.getVisibility() != View.INVISIBLE) {
-            Log.e(TAG, "onNestedScroll: ");
             hideFab(child);
         } else if (dyConsumed < 0 && child.getVisibility() == View.INVISIBLE) {
             child.show();
         }
     }
 
+    @Override
+    public void onStopNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull FloatingActionButton child, @NonNull View target, int type) {
+        super.onStopNestedScroll(coordinatorLayout, child, target, type);
+        if (child.getVisibility() == View.INVISIBLE) child.show();
+    }
+
     private void hideFab(final View view) {
         if (view.getAnimation() != null) return; // 防止重复添加隐藏动画
-        Log.e(TAG, "hideFab: ");
         AlphaAnimation alpha = new AlphaAnimation(1, 0);
         ScaleAnimation scale = new ScaleAnimation(1f, 0.0f, 1f, 0.0f,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
