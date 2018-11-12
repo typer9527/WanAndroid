@@ -44,8 +44,12 @@ class ArticleAdapter extends BaseRVAdapter<ArticleAdapter.ArticleHolder> {
         final Articles.Article article = list.get(position);
         RequestOptions options = new RequestOptions()
                 .centerCrop().error(R.drawable.ic_android).placeholder(R.drawable.ic_android);
-        if (!TextUtils.isEmpty(article.getEnvelopePic()))
+        if (!TextUtils.isEmpty(article.getEnvelopePic())) {
+            holder.ivCover.setVisibility(View.VISIBLE);
             Glide.with(mContext).load(article.getEnvelopePic()).apply(options).into(holder.ivCover);
+        } else {
+            holder.ivCover.setVisibility(View.GONE);
+        }
         holder.tvTitle.setText(Html.fromHtml(article.getTitle()));
         holder.tvAuthorAndTime.setText(mContext.getString(R.string.label_author_and_time, article.getAuthor(), article.getNiceDate()));
         holder.tvCategory.setText(mContext.getString(R.string.label_mark_category, article.getSuperChapterName(), article.getChapterName()));
