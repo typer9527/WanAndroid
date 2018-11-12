@@ -47,10 +47,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
-            android:paddingBottom="10dp"
             android:paddingLeft="30dp"
-            android:paddingRight="30dp"
             android:paddingTop="10dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageButton
@@ -72,5 +72,4 @@
                 android:src="@drawable/selector_ib_web_go_forward" />
         </LinearLayout>
     </android.support.design.widget.AppBarLayout>
-
 </android.support.constraint.ConstraintLayout>

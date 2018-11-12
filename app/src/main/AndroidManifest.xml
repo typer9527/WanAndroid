@@ -3,6 +3,7 @@
     package="com.yl.wanandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".app.MyApplication"
@@ -45,5 +46,6 @@
         <activity android:name=".view.WebViewActivity" />
         <activity android:name=".view.user.SettingActivity" />
         <activity android:name=".view.CollectActivity" />
+        <activity android:name=".view.AgentWebActivity" />
     </application>
 </manifest>

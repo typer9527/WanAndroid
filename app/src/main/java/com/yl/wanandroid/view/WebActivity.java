@@ -91,7 +91,7 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                WebViewActivity.openExternalUrl(WebActivity.this, url);
+                AgentWebActivity.openExternalUrl(WebActivity.this, url);
                 return true;
             }
 
@@ -128,13 +128,13 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        WebViewActivity.openExternalUrl(WebActivity.this, picUrl);
+                        AgentWebActivity.openExternalUrl(WebActivity.this, picUrl);
                         break;
                     case 1:
                         showMsg("未完成的功能");
                         break;
                     case 2:
-                        WebViewActivity.openExternalUrl(WebActivity.this, qrCodeUrl);
+                        AgentWebActivity.openExternalUrl(WebActivity.this, qrCodeUrl);
                         break;
                     default:
                         break;
@@ -215,6 +215,7 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
                 QRCodeReader reader = new QRCodeReader();
                 Result result = null;
                 try {
+                    // TODO: 2018/10/24 优化二维码的识别
                     result = reader.decode(bitmap);
                 } catch (NotFoundException e) {
                     e.printStackTrace();

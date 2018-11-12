@@ -19,8 +19,8 @@ import com.yl.wanandroid.presenter.HomePresenter;
 import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.BannerData;
 import com.yl.wanandroid.utils.ViewUtils;
+import com.yl.wanandroid.view.AgentWebActivity;
 import com.yl.wanandroid.view.WebActivity;
-import com.yl.wanandroid.view.WebViewActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
@@ -142,7 +142,7 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
 
     @Override
     public void OnBannerClick(int position) {
-        WebViewActivity.openExternalUrl(mActivity, banners.get(position).getUrl());
+        AgentWebActivity.openExternalUrl(mActivity, banners.get(position).getUrl());
     }
 
     class BannerLoader extends ImageLoader {

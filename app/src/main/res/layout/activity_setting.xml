@@ -29,115 +29,49 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp">
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp">
 
             <View style="@style/DefaultDivideLine" />
 
             <TextView
                 android:id="@+id/tv_clean_cache"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/selector_ll_item_bg"
-                android:drawableEnd="@drawable/selector_chevron_right_gray"
-                android:drawableRight="@drawable/selector_chevron_right_gray"
-                android:gravity="center_vertical"
-                android:paddingBottom="5dp"
-                android:paddingEnd="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="5dp"
-                android:paddingStart="15dp"
-                android:paddingTop="5dp"
-                android:text="@string/label_clean_cache"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/text_size_medium" />
+                style="@style/SettingItemStyle"
+                android:text="@string/label_clean_cache" />
 
             <View style="@style/DefaultDivideLine" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@color/colorWhite"
-                android:orientation="vertical">
+            <View
+                style="@style/DefaultDivideLine"
+                android:layout_marginTop="20dp" />
 
-                <View style="@style/DefaultDivideLine" />
+            <TextView
+                android:id="@+id/tv_help_and_callback"
+                style="@style/SettingItemStyle"
+                android:text="@string/label_help_callback" />
 
-                <TextView
-                    android:id="@+id/tv_help_and_callback"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_ll_item_bg"
-                    android:drawableEnd="@drawable/selector_chevron_right_gray"
-                    android:drawableRight="@drawable/selector_chevron_right_gray"
-                    android:gravity="center_vertical"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="5dp"
-                    android:paddingStart="15dp"
-                    android:paddingTop="5dp"
-                    android:text="@string/label_help_callback"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/text_size_medium" />
+            <View
+                style="@style/DefaultDivideLine"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp" />
 
-                <View
-                    style="@style/DefaultDivideLine"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginStart="15dp" />
+            <TextView
+                android:id="@+id/tv_about"
+                style="@style/SettingItemStyle"
+                android:text="@string/label_about" />
 
-                <TextView
-                    android:id="@+id/tv_about"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_ll_item_bg"
-                    android:drawableEnd="@drawable/selector_chevron_right_gray"
-                    android:drawableRight="@drawable/selector_chevron_right_gray"
-                    android:gravity="center_vertical"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="5dp"
-                    android:paddingStart="15dp"
-                    android:paddingTop="5dp"
-                    android:text="@string/label_about"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/text_size_medium" />
+            <View style="@style/DefaultDivideLine" />
 
-                <View style="@style/DefaultDivideLine" />
-            </LinearLayout>
+            <View
+                style="@style/DefaultDivideLine"
+                android:layout_marginTop="20dp" />
 
-            <RelativeLayout
-                android:id="@+id/rl_sign_out"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+            <TextView
+                android:id="@+id/tv_sign_out"
+                style="@style/SettingItemStyle"
+                android:text="@string/label_sign_out" />
 
-                <View style="@style/DefaultDivideLine" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_ll_item_bg"
-                    android:drawableEnd="@drawable/selector_chevron_right_gray"
-                    android:drawableRight="@drawable/selector_chevron_right_gray"
-                    android:gravity="center_vertical"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="5dp"
-                    android:paddingStart="15dp"
-                    android:paddingTop="5dp"
-                    android:text="@string/label_sign_out"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/text_size_medium" />
-
-                <View style="@style/DefaultDivideLine" />
-
-                <View
-                    style="@style/DefaultDivideLine"
-                    android:layout_alignParentBottom="true" />
-            </RelativeLayout>
+            <View style="@style/DefaultDivideLine" />
 
             <TextView
                 android:id="@+id/tv_app_info"
@@ -145,12 +79,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:paddingBottom="5dp"
-                android:paddingEnd="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="5dp"
-                android:paddingStart="15dp"
                 android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:text="@string/label_app_info"
                 android:textColor="@color/colorGray"
                 android:textSize="@dimen/text_size_medium" />
