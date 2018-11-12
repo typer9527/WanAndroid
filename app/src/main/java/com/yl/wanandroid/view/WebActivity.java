@@ -54,6 +54,7 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
     private ArrayAdapter<String> dialogItemsAdapter;
     private String qrCodeUrl;
     private List<String> itemList;
+    private boolean hasRedirect;
 
     public static void openWebPage(Activity activity, String url, boolean isCollected, int originId, int id) {
         Intent intent = new Intent(activity, WebActivity.class);
@@ -91,7 +92,9 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                AgentWebActivity.openExternalUrl(WebActivity.this, url);
+                if (!hasRedirect)
+                    AgentWebActivity.openExternalUrl(WebActivity.this, url);
+                hasRedirect = true;
                 return true;
             }
 
@@ -114,6 +117,12 @@ public class WebActivity extends BaseActivity implements Toolbar.OnMenuItemClick
             }
         });
         initBottomDialog();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        hasRedirect = false;
     }
 
     private void initBottomDialog() {
