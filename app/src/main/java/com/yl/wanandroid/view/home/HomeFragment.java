@@ -3,6 +3,8 @@ package com.yl.wanandroid.view.home;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -32,12 +34,16 @@ import java.util.List;
 import butterknife.BindView;
 
 public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> implements HomeView, OnRefreshLoadMoreListener, OnItemClickListener, OnBannerListener {
+    @BindView(R.id.abl_home)
+    AppBarLayout ablHome;
     @BindView(R.id.banner_home)
     Banner bannerHome;
     @BindView(R.id.srl_home)
     SmartRefreshLayout srlHome;
     @BindView(R.id.rv_home)
     RecyclerView rvHome;
+    @BindView(R.id.fab_to_top)
+    FloatingActionButton fabToTop;
     private int totalPage, currentIndex;
     private ArrayList<Articles.Article> list;
     private List<BannerData> banners;
@@ -65,6 +71,13 @@ public class HomeFragment extends BaseMvpFragment<HomeView, HomePresenter> imple
     protected void initListener() {
         bannerHome.setOnBannerListener(this);
         srlHome.setOnRefreshLoadMoreListener(this);
+        fabToTop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rvHome.smoothScrollToPosition(0);
+                ablHome.setExpanded(true, true);
+            }
+        });
     }
 
     @Override
