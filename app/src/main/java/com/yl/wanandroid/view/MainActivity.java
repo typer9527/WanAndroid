@@ -6,10 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 
 import com.yl.wanandroid.R;
-import com.yl.wanandroid.base.ViewPagerAdapter;
 import com.yl.wanandroid.base.BaseActivity;
+import com.yl.wanandroid.base.ViewPagerAdapter;
 import com.yl.wanandroid.utils.ToastUtils;
-import com.yl.wanandroid.utils.ViewUtils;
 import com.yl.wanandroid.view.home.HomeFragment;
 import com.yl.wanandroid.view.project.ProjectFragment;
 import com.yl.wanandroid.widget.NoScrollViewPager;
@@ -34,7 +33,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     @Override
     public void initView() {
-        ViewUtils.disableShiftMode(bnvMain);
     }
 
     @Override
