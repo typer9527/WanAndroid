@@ -36,6 +36,7 @@ public class CollectFunction implements ErrorListener, ResponseListener<EmptyDat
     public void handleArticleCollect(ImageView ivCollect, CollectItem item) {
         this.ivCollect = ivCollect;
         isCollected = ivCollect.isSelected();
+        item.setState(!isCollected);
         mContext = ivCollect.getContext();
         collectOrRevoke(item.getItemOriginId(), item.getItemId());
     }

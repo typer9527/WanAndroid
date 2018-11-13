@@ -7,4 +7,5 @@ public interface CollectItem {
     int getItemId();
     int getItemOriginId();
     boolean isArticle();
+    void setState(boolean isCollected);
 }

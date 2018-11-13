@@ -54,4 +54,9 @@ public class Website implements CollectItem {
     public boolean isArticle() {
         return false;
     }
+
+    @Override
+    public void setState(boolean isCollected) {
+
+    }
 }

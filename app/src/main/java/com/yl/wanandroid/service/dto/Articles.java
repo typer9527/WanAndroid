@@ -308,6 +308,11 @@ public class Articles {
         public boolean isArticle() {
             return true;
         }
+
+        @Override
+        public void setState(boolean isCollected) {
+            collect = isCollected;
+        }
     }
 
     private class Tag {
