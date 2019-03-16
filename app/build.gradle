@@ -5,7 +5,7 @@ android {
     defaultConfig {
         applicationId "com.yl.wanandroid"
         minSdkVersion 15
-        targetSdkVersion 27 //todo migrate to android X
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
