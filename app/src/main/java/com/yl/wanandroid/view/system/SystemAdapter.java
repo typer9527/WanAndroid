@@ -58,7 +58,8 @@ class SystemAdapter extends BaseRVAdapter<SystemAdapter.SystemHolder> {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
                 int id = child.getChildren().get(position).getId();
-                listener.onClick(view, id);
+                if (listener != null)
+                    listener.onClick(view, id);
                 return true;
             }
         });
