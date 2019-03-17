@@ -44,13 +44,13 @@ class SystemAdapter extends BaseRVAdapter<SystemAdapter.SystemHolder> {
     @Override
     public void onBindViewHolder(@NonNull final SystemHolder holder, int position) {
         final TreeChild child = list.get(position);
-        holder.tvTitle.setText(child.getName());
+        holder.tvTitle.setText(Html.fromHtml(child.getName()));
         holder.tflSubTitles.setAdapter(new TagAdapter<TreeChild>(child.getChildren()) {
             @Override
             public View getView(FlowLayout parent, int position, TreeChild treeChild) {
                 TextView tv = (TextView) LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.item_flow_tag, parent, false);
-                tv.setText(treeChild.getName());
+                tv.setText(Html.fromHtml(treeChild.getName()));
                 return tv;
             }
         });
