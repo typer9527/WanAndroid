@@ -5,6 +5,7 @@ import com.yl.wanandroid.service.dto.Articles;
 import com.yl.wanandroid.service.dto.BannerData;
 import com.yl.wanandroid.service.dto.EmptyData;
 import com.yl.wanandroid.service.dto.ProjectCategory;
+import com.yl.wanandroid.service.dto.TreeChild;
 import com.yl.wanandroid.service.dto.Website;
 
 import java.util.List;
@@ -58,11 +59,14 @@ public interface APIService {
     @POST("lg/uncollect_originId/{id}/json")
     Observable<HttpResponse<EmptyData>> revokeCollectArticle(@Path("id") int id);
 
-//    @FormUrlEncoded
+    //    @FormUrlEncoded
 //    @POST("lg/collect/add/json")
 //    Observable<HttpResponse<EmptyData>> collectOffSiteArticle(@Field("title") String title,
 //                                                              @Field("author") String author,
 //                                                              @Field("link") String link);
     @GET("lg/collect/usertools/json")
     Observable<HttpResponse<List<Website>>> getCollectedWebsites();
+
+    @GET("tree/json")
+    Observable<HttpResponse<List<TreeChild>>> getSystemTree();
 }
